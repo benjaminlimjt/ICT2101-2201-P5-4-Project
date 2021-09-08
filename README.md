@@ -8,12 +8,27 @@ Discuss and come up with a plan,
 
     
 
-Must have:
+**Must have:**
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] 
+- [ ] GUI 
 
-    Web portal
-    robot car
+##### Should have:
+- [ ] 
+- [ ] 
+
+##### Could have:
+- [ ] 
+- [ ] 
 
 
-Instructions
+##### Would have:
+- [ ] 
+- [ ] 
 
-    To be updated
+### Instructions 
+1. To be updated
