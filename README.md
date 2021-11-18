@@ -2,35 +2,16 @@
 
 Project Description
 
-To be updated
+## Development Workflow
 
-Discuss and come up with a plan,
-
-**Must have:**
-
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ]
-- [ ] GUI
-
-##### Should have:
-
-- [ ]
-- [ ]
-
-##### Could have:
-
-- [ ]
-- [ ]
-
-##### Would have:
-
-- [ ]
-- [ ]
-
+1. Every member should have their own branch with their names on it
+2. Before starting to work on their own branches, the team should always pull changes from the main branches to ensure that their respective branches is up to date with the main branch.
+3. The team should commit to their respective branches regularly
+4. After committing the changes to the respective branches, pull changes from the main branch, ensure that there are no conflicts (reslove conflict if any)
+5. If there are any changes made after pulling changes main branch, remember to commit the changes to the respective branches first
+6. Raise a pull request
+7. Pull request should be approved by the Scrum Master (Celine) or the Tech Lead (Chia Wei), at any point of time the Scrum Master or Tech Lead is not available, the pull request can be approved by the other team members. Members should not approve their own pull requests
+8. When approving the pull request, the approver should input some comments before merging the branch to main branch.
 
 ## Project Setup
 
@@ -89,5 +70,3 @@ routes - routing for each request call
 
 variables/function names: camelCase  
 component/model names: PascalCase
-
-
