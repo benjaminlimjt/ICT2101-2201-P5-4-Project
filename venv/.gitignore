@@ -3,5 +3,4 @@ bin/*
 Lib/*
 lib/*
 Scripts/*
-bin/*
 pyvenv.cfg
