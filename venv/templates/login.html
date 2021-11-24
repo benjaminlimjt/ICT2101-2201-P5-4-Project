@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="card-wrapper">
+
+        <div class="card">
+
+            <h1 class="center">Login</h1>
+
+            <form name="createUser_form" method="post">
+
+                <label for="username">Username</label>
+                <input type="text" name="username" class="field" required>
+
+                <label for="password">Password</label>
+                <input type="password" name="password" class="field" required>
+
+                <p class="error error--hidden">
+                </p>
+
+                <input type="submit" value="Login" class="btn">
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}
