@@ -4,6 +4,11 @@ Project Description
 
 ## Development Workflow
 
+1. Always commit to dev branch before main branch.
+2. Do feature work only in ur own feature branch.
+3. Commit regularly.
+4. 
+
 1. Every member should have their own branch with their names on it
 2. Before starting to work on their own branches, the team should always pull changes from the main branches to ensure that their respective branches is up to date with the main branch.
 3. The team should commit to their respective branches regularly
@@ -49,14 +54,58 @@ Scripts\activate cannot be loaded because running scripts is disabled on this sy
 # NOTE, AFTER INSTALLATION, BEFORE YOU DO ANYTHING, please do ``Scripts\activate`` to activate the venv 
 you should see (venv) <Directory> in your command prompt/wsl/etc
 
-
+  
+## Directory Structure
+```
+  
+├── venv/            
+│   └── classes/ # Store Classes here
+│       └── user/ # Files belonging to user class
+│   └── static/
+│       └── css/ # CSS files
+│       └── js/ # Javascript files
+│   └── templates/ # Pages
+│       └── admin/ # Pages belonging to admin
+|       └── base.html
+|       └── login.html
+│   └── .gitignore
+│   └── app.py # Main
+│   └── db.py # DB Config File
+│   └── requirements.txt
+└── README.md
+```
+  
 ## Frontend Folder Structure
-
-TBC
+  
+```
+.
+├── venv/            
+│   └── static/
+│       └── css/ # CSS files
+│       └── js/ # Javascript files
+│   └── templates/ # Pages
+│       └── admin/ # Pages belonging to admin
+|       └── base.html
+|       └── login.html
+│   └── .gitignore
+│   └── app.py # Main
+│   └── db.py # DB Config File
+```
   
 ## Backend Folder Structure
 
-TBC
+```
+.       
+├── venv/            
+│   └── classes/ # Store classes here
+│       └── user/ # Files belonging to user class
+│   └── static/ 
+│       └── css/ # CSS files
+│       └── js/ # Javascript files
+│   └── .gitignore
+│   └── app.py # Main
+│   └── db.py # DB Config File
+```
 
 ## Naming Conventions
 
