@@ -15,56 +15,48 @@ Project Description
 
 ## Project Setup
 
-Install nodemon globally
+Installation instructions
+
+Windows
 
 ```
-npm i nodemon -g
+cd venv
+
+virtualenv -p python3 .
+
+Scripts\activate
+
+pip install -r requirements.txt
 ```
 
-Create .env file and enter necessary configurations (follow keys in .env.example)
+to run:
 
-```
-// In root folder
-touch .env
-```
+``python app.py``
 
-Install packages in both frontend and backend folders. Run `npm install` in root folder.
+Whenever libraries are installed through pip, please update requirements.txt with the following command:
 
-```
-// In root folder
-npm install
-```
+``pip freeze > requirements.txt``
 
-Run both frontend and backend applications concurrently. Run `npm run dev` in root folder.
+http://localhost:5000
 
-```
-// In root folder
-npm run dev
-```
+# Errors
+
+Scripts\activate cannot be loaded because running scripts is disabled on this system.
+
+``Set-ExecutionPolicy Unrestricted -Scope Process``
+
+
+# NOTE, AFTER INSTALLATION, BEFORE YOU DO ANYTHING, please do ``Scripts\activate`` to activate the venv 
+you should see (venv) <Directory> in your command prompt/wsl/etc
+
 
 ## Frontend Folder Structure
 
-assets - store all images or files needed for project
-
-components - create a folder for each component inside this folder
-
-constants - store constant variables to be used throughout the app
-
-utils - useful code to use throughout the application
-
+TBC
+  
 ## Backend Folder Structure
 
-config - database configurations and connections
-
-constants - store constant variables to be used througout the app
-
-controllers - functions to handle each request
-
-middleware - middleware such as api authorization and rate limiter modules
-
-models - models for each class
-
-routes - routing for each request call
+TBC
 
 ## Naming Conventions
 
