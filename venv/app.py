@@ -50,6 +50,10 @@ def login():
 def logout():
     return User().logout()
 
+@app.route('/challenges', methods=['GET'])
+def viewChallenges():
+    return render_template('/challenges/index.html')
+
 # Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
 
 # Manage User
