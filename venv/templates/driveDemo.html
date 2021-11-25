@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="card-wrapper">
+
+        <div class="card">
+
+            <h1 class="center">Wifi demo</h1>
+            <form name="sendCmd_form">
+                <label for="command">Command</label>
+                <input type="text" name="inputCmd" class="field" required>
+                <input type ="submit" value="Send Data" class="btn">
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}

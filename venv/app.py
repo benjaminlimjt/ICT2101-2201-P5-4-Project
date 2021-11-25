@@ -1,6 +1,7 @@
 from flask import Flask, render_template, session, redirect
 from functools import wraps
 from classes.user.models import User
+from classes.car.dataProcessor import Processor
 # from topsecrets import SECRET_KEY
 app = Flask(__name__)
 # app.secret_key = SECRET_KEY
@@ -42,10 +43,6 @@ def home():
 def viewLogin():
     return render_template('login.html')
 
-@app.route('/demo', methods=['GET'])
-def viewDemo():
-    return render_template('driveDemo.html')
-
 @app.route('/login', methods=['POST'])
 def login():
     return User().login()
@@ -53,6 +50,13 @@ def login():
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     return User().logout()
+
+@app.route('/driveDemo', methods=['GET'])
+def viewDemo():
+    return render_template('driveDemo.html')
+@app.route('/driveDemo', methods=['POST'])
+def sendCommand():
+    return Processor().sendCommand()
 
 # Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
 
