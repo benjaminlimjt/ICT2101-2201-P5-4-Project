@@ -46,6 +46,15 @@ def viewLogin():
 def login():
     return User().login()
 
+    """
+    if "email" in session:
+        email = session["email"]
+        return render_template('login.html', email=email)
+    else:
+        return redirect("login")
+    """
+    
+
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     return User().logout()
@@ -55,6 +64,10 @@ def viewChallenges():
     return render_template('/challenges/index.html')
 
 # Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
+
+@app.route('/dashboard', methods=['GET'])
+def viewDashboard():
+    return render_template('/dashboard/index.html')
 
 # Manage User
 @app.route('/admin/manageUsers')
