@@ -1,9 +1,9 @@
 from flask import Flask, render_template, session, redirect
 from functools import wraps
 from classes.user.models import User
-from topsecrets import SECRET_KEY
+# from topsecrets import SECRET_KEY
 app = Flask(__name__)
-app.secret_key = SECRET_KEY
+# app.secret_key = SECRET_KEY
 
 
 # Decorators
@@ -41,6 +41,10 @@ def home():
 @app.route('/login', methods=['GET'])
 def viewLogin():
     return render_template('login.html')
+
+@app.route('/demo', methods=['GET'])
+def viewDemo():
+    return render_template('driveDemo.html')
 
 @app.route('/login', methods=['POST'])
 def login():
