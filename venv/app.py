@@ -69,6 +69,10 @@ def viewChallenges():
 def viewDashboard():
     return render_template('/dashboard/index.html')
 
+@app.route('/admin/dashboard', methods=['GET'])
+def viewAdminDashboard():
+    return render_template('/admin/dashboard/index.html')
+
 # Manage User
 @app.route('/admin/manageUsers')
 @admin_only
