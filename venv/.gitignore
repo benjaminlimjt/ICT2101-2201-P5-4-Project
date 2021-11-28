@@ -4,3 +4,4 @@ Lib/*
 lib/*
 Scripts/*
 pyvenv.cfg
+topsecrets.py
