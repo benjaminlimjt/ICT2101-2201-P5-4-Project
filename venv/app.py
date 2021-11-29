@@ -63,6 +63,8 @@ def logout():
 def viewChallenges():
     return render_template('/challenges/index.html')
 
+
+
 # Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
 
 @app.route('/dashboard', methods=['GET'])
@@ -88,6 +90,28 @@ def viewCreateUser():
 @admin_only
 def adminCreateUser():
     return User().createUser()
+
+
+
+
+# Manage Challenge
+@app.route('/admin/manageChallenges')
+#@admin_only
+def viewManageChallenges():
+    return render_template('/admin/manageChallenges/manageChallenges.html')
+
+@app.route('/admin/manageChallenges/createChallenges', methods=['GET'])
+#@admin_only
+def viewCreateChallenges():
+    return render_template('/admin/manageChallenges/createChallenges.html')
+
+@app.route('/admin/manageChallenges/updateChallenges', methods=['GET'])
+#@admin_only
+def viewUpdateChallenges():
+    return render_template('/admin/manageChallenges/updateChallenges.html')
+
+
+
 
 if __name__ == '__main__':
     app.run(debug = True)

@@ -62,49 +62,43 @@
         </div>
     </div>
 </nav>
-
 <main role="main">
-
-    <div class="jumbotron">
-        <div class="container">
-            <h1 style="color: white;">Challenges</h1>
-        </div>
-    </div>
-
-    <div class="modal fade" id="challenge-window" tabindex="-1" role="dialog">
-    </div>
-
+<div class="jumbotron">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div>
+        <h1 style="color: white;">Update Challenges</h1>
+    </div>
+</div>
+<div class="card-wrapper">
 
+    <div class="card">
 
-                </div>
-            </div>
-        </div>
+        <form name="challengeName_form" method="post">
 
-        <div id="challenges-board">
-           
+            <label for="challengeName">Challenge Name</label>
+            <input type="text" name="challengeName" class="field" required>
 
-            <div id="-1807658801-row" class="pt-5">
-                <div class="category-header col-md-12 mb-3">
-                    <h3>Easy Challenge</h3>
-                </div>
-                <div class="category-challenges col-md-12">
-                    <div class="challenges-row col-md-12">
-                        <div id="-1047475930" class="col-md-3 d-inline-block">
-                            <button class="btn btn-dark challenge-button w-100 text-truncate pt-3 pb-3 mb-2" value="3">
-                                <p>Drive!</p><span>10</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-        </div>
+            <label for="description">Description</label>
+            <textarea type="description" name="description" class="field" rows="10" cols="50" required></textarea>
+
+            <label for="gameData">Game Data</label>
+            <select name="gameData" id="gameData">
+                <option value="admin">Data 1</option>
+                <option value="student">Data 2</option>
+            </select>
+
+            <label for="badge">Badge</label>
+            <select name="badge" id="badge" multiple>
+                <option value="admin">Badge 1</option>
+                <option value="student">Badge 1</option>
+            </select>
+
+            <p class="error error--hidden">
+            </p>
+
+            <input type="submit" value="Create Challenge" class="btn">
+        </form>
     </div>
 
+</div>
 </main>
-
 {% endblock %}
