@@ -1,5 +1,7 @@
-from flask import Flask, render_template, session, redirect
+from flask import Flask, render_template, session, redirect, request
 from functools import wraps
+
+from flask.helpers import url_for
 from classes.user.models import User
 from topsecrets import SECRET_KEY
 app = Flask(__name__)
@@ -7,6 +9,16 @@ app.secret_key = SECRET_KEY
 
 
 # Decorators
+def logged_in(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'loggedIn' in session:
+            return redirect('/')
+        else:
+            return f(*args, **kwargs)
+
+    return wrap
+
 def login_required(f):
     @wraps(f)
     def wrap(*args, **kwargs):
@@ -38,13 +50,15 @@ def home():
 
 # Generic Routes such as: Login, Dashboard, 
 
-@app.route('/login', methods=['GET'])
-def viewLogin():
-    return render_template('login.html')
-
-@app.route('/login', methods=['POST'])
+@app.route('/login', methods=['GET','POST'])
+#@logged_in
 def login():
-    return User().login()
+
+    if request.method == 'GET':
+        return render_template('login.html')
+    
+    if request.method == 'POST':
+        return User().login()
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
@@ -52,21 +66,20 @@ def logout():
 
 # Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
 
-# Manage User
-@app.route('/admin/manageUsers')
+# Manage Users
+@app.route('/admin/manageUsers', methods=['GET'])
 @admin_only
-def viewManageUsers():
+def manageUsers():
     return render_template('/admin/manageUsers/manageUsers.html')
 
-@app.route('/admin/manageUsers/createUser', methods=['GET'])
+@app.route('/admin/manageUsers/createUser', methods=['GET', 'POST'])
 @admin_only
-def viewCreateUser():
-    return render_template('/admin/manageUsers/createUser.html')
+def createUser():
+    if request.method == 'GET':
+        return render_template('/admin/manageUsers/createUser.html')
 
-@app.route('/admin/manageUsers/createUser', methods=['POST'])
-@admin_only
-def adminCreateUser():
-    return User().createUser()
+    if request.method == 'POST':
+        return User().createUser()
 
 if __name__ == '__main__':
     app.run(debug = True)

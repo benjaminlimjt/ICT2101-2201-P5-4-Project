@@ -8,7 +8,7 @@
 
             <h1 class="center">Create an Account</h1>
 
-            <form name="createUser_form" method="post">
+            <form name="createUser_form" id="createUser_form" method="post">
 
                 <label for="username">Username</label>
                 <input type="text" name="username" class="field" required>
@@ -24,6 +24,9 @@
                     <option value="admin">Admin</option>
                     <option value="student">Student</option>
                 </select>
+
+                <p class="success success--hidden">
+                </p>
 
                 <p class="error error--hidden">
                 </p>
