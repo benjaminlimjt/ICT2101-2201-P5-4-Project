@@ -8,18 +8,17 @@ from db import db
 
 class Processor:
     def sendMovementCommand(self):
+        
         # Create a data object
         data ={
             "_id":uuid.uuid4().hex,
-            "command":request.form.get('inputCmd')
+            "command":request.get_json()
         }
         db.carMovement.drop()
         db.create_collection("carMovement")
         if db.carMovement.insert_one(data):
-             return jsonify(data), 200
+             return ({"success": "Successfully sent command"}), 200
         return "Processor.sendCommand failed"
-        
-        # return ({"success": "Successfully added user"}), 200
     def getMovementCommand(self):
         cursor = db.carMovement.find()
         for record in cursor:
