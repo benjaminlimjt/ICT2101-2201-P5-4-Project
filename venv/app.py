@@ -15,8 +15,9 @@ def login_required(f):
             return f(*args, **kwargs)
         else:
             return redirect('/login')
-    
+
     return wrap
+
 
 def admin_only(f):
     @wraps(f)
@@ -29,23 +30,36 @@ def admin_only(f):
 
     return wrap
 
-# ROUTES 
+# ROUTES
 
 # Home Route such as: /
+
+
 @app.route('/')
 @login_required
 def home():
     return render_template('home.html')
 
-# Generic Routes such as: Login, Dashboard, 
+# Generic Routes such as: Login, Dashboard,
+
 
 @app.route('/login', methods=['GET'])
 def viewLogin():
     return render_template('login.html')
 
+
 @app.route('/login', methods=['POST'])
 def login():
     return User().login()
+
+    """
+    if "email" in session:
+        email = session["email"]
+        return render_template('login.html', email=email)
+    else:
+        return redirect("login")
+    """
+
 
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
@@ -66,24 +80,48 @@ def updateSensorData(data):
     res = Processor().updateSensorData(data)
     return res + "Data from request = "+ data
 
+@app.route('/challenges', methods=['GET'])
+def viewChallenges():
+    return render_template('/challenges/index.html')
+
+
+@app.route('/freeDriving', methods=['GET'])
+def freeDriving():
+    return render_template('/freeDriving/freeDriving.html')
+
 
 # Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
 
+
+@app.route('/dashboard', methods=['GET'])
+def viewDashboard():
+    return render_template('/dashboard/index.html')
+
+
+@app.route('/admin/dashboard', methods=['GET'])
+def viewAdminDashboard():
+    return render_template('/admin/dashboard/index.html')
+
 # Manage User
+
+
 @app.route('/admin/manageUsers')
 @admin_only
 def viewManageUsers():
     return render_template('/admin/manageUsers/manageUsers.html')
+
 
 @app.route('/admin/manageUsers/createUser', methods=['GET'])
 @admin_only
 def viewCreateUser():
     return render_template('/admin/manageUsers/createUser.html')
 
+
 @app.route('/admin/manageUsers/createUser', methods=['POST'])
 @admin_only
 def adminCreateUser():
     return User().createUser()
+
 
 if __name__ == '__main__':
     app.run(host= '0.0.0.0',debug = True)
