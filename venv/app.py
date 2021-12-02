@@ -34,7 +34,7 @@ def admin_only(f):
 @app.route('/')
 @login_required
 def home():
-    return render_template('home.html')
+    return render_template('/dashboard/index.html')
 
 # Generic Routes such as: Login, Dashboard, 
 
