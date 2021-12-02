@@ -51,12 +51,21 @@ def login():
 def logout():
     return User().logout()
 
-@app.route('/driveDemo', methods=['GET'])
+@app.route('/freeDriving', methods=['GET'])
 def viewDemo():
     return render_template('driveDemo.html')
-@app.route('/driveDemo', methods=['POST'])
-def sendCommand():
-    return Processor().sendCommand()
+@app.route('/freeDriving', methods=['POST'])
+def sendMovementCommand():
+    return Processor().sendMovementCommand()
+@app.route('/freeDriving/getCarCommands', methods=['GET'])
+def getMovementCommand():
+    return Processor().getMovementCommand()
+
+@app.route('/freeDriving/sensorData/<data>', methods=['GET', 'POST'])
+def updateSensorData(data):
+    res = Processor().updateSensorData(data)
+    return res + "Data from request = "+ data
+
 
 # Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
 
@@ -77,4 +86,4 @@ def adminCreateUser():
     return User().createUser()
 
 if __name__ == '__main__':
-    app.run(debug = True)
+    app.run(host= '0.0.0.0',debug = True)

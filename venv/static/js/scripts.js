@@ -73,7 +73,7 @@ $("form[name=sendCmd_form").submit(function (e) {
     var data = $form.serialize();
 
     $.ajax({
-        url: "/driveDemo",
+        url: "/freeDriving",
         type: "POST",
         data: data,
         dataType: "json",

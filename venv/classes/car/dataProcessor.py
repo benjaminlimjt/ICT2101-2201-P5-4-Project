@@ -1,19 +1,39 @@
 from flask import Flask, jsonify, request, session, redirect
 import json
+from bson.json_util import dumps
 
 from passlib.hash import pbkdf2_sha256
 import uuid
 from db import db
 
 class Processor:
-    def sendCommand(self):
+    def sendMovementCommand(self):
         # Create a data object
         data ={
             "_id":uuid.uuid4().hex,
             "command":request.form.get('inputCmd')
         }
-        if db.carData.insert_one(data):
+        db.carMovement.drop()
+        db.create_collection("carMovement")
+        if db.carMovement.insert_one(data):
              return jsonify(data), 200
         return "Processor.sendCommand failed"
         
         # return ({"success": "Successfully added user"}), 200
+    def getMovementCommand(self):
+        cursor = db.carMovement.find()
+        for record in cursor:
+            return ">"+record["command"]+">"
+        # list_cur = list(cursor)
+        # json_data = dumps(list_cur)
+        # return json_data
+    def updateSensorData(self,data):
+        data ={
+            "_id":uuid.uuid4().hex,
+            "sensorData":data
+        }
+        db.carSensorData.drop()
+        db.create_collection("carSensorData")
+        if db.carSensorData.insert_one(data):
+             return "Successfully inserted Sensor Data. \n"
+        return "Processor.updateSensorData failed"
