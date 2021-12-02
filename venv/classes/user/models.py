@@ -21,14 +21,15 @@ class User:
             'name': self.name,
             'role': self.role
         }
-
+    
     def start_session(self):
+        session.clear()
         session['loggedIn'] = True
         session['user'] = self.toJSON()
         return ({"success": "Successfully logged in"}), 200
 
     def login(self):
-        user = self.usernameExists(request.form.get('username'))
+        user = self.fetchByUsername(request.form.get('username'))
         if user and pbkdf2_sha256.verify(request.form.get('password'), user['password']):
             self._id = user['_id']
             self.username = user['username']
@@ -49,23 +50,45 @@ class User:
         self.name = request.form.get('name')
         self.role = request.form.get('role')
 
-        if self.usernameExists(self.username):
+        if self.fetchByUsername(self.username):
             return ({"error": "Username already in use"}), 400
         
-        while self._idExists(self._id):
+        if self.role != 'student' and self.role != 'admin':
+            return ({"error": "invalid role"}), 400
+        
+        while self.fetchBy_id(self._id):
             self._id = uuid.uuid4().hex
 
         db.users.insert_one(self.toJSON())
         return ({"success": "Successfully added user"}), 200
 
     def updateUser(self):
-        return None
+        user = self.fetchBy_id(request.form.get('_id'))
+        self = User(user['_id'], user['username'], user['password'], user['name'], user['role'])
+
+        if self.username != request.form.get('username') and self.fetchByUsername(request.form.get('username')):
+            return "Error: Username already in use"
+
+        self.username = request.form.get('username')
+        self.password = pbkdf2_sha256.encrypt(request.form.get('password'))
+        self.name = request.form.get('name')
+        self.role = request.form.get('role')
+
+        db.users.update_one({'_id': self._id}, { '$set': {'username':self.username}})
+        db.users.update_one({'_id': self._id}, { '$set': {'password':self.password}})
+        db.users.update_one({'_id': self._id}, { '$set': {'name':self.name}})
+        db.users.update_one({'_id': self._id}, { '$set': {'role':self.role}})
+
+        if session['user']['_id'] == self._id:
+            self.start_session()
+        return "Successfully updated user"
     
     def deleteUser(self):
-        return None
+        db.users.delete_one({'_id': request.form.get('_id')})
+        return "Successfully deleted user"
     
-    def usernameExists(self, username):
+    def fetchByUsername(self, username):
         return db.users.find_one({'username': username})
 
-    def _idExists(self, id):
+    def fetchBy_id(self, id):
         return db.users.find_one({'_id': id})
