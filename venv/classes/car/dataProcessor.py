@@ -17,7 +17,8 @@ class Processor:
         db.carMovement.drop()
         db.create_collection("carMovement")
         if db.carMovement.insert_one(data):
-             return ({"success": "Successfully sent command"}), 200
+            print("COMMAND update=",request.get_json()); 
+            return ({"success": "Successfully sent command"}), 200
         return "Processor.sendCommand failed"
     def getMovementCommand(self):
         cursor = db.carMovement.find()

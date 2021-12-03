@@ -65,9 +65,6 @@ def login():
 def logout():
     return User().logout()
 
-# @app.route('/freeDriving', methods=['GET'])
-# def viewDemo():
-#     return render_template('driveDemo.html')
 @app.route('/freeDriving', methods=['POST'])
 def sendMovementCommand():
     return Processor().sendMovementCommand()

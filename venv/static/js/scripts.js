@@ -66,29 +66,16 @@ $("form[name=sendData_form").submit(function (e) {
 
     e.preventDefault();
 })
-// $("form[name=sendCmd_form").submit(function (e) {
 
-//     var $form = $(this);
-//     var $error = $form.find(".error");
-//     var data = $form.serialize();
-
-//     $.ajax({
-//         url: "/freeDriving",
-//         type: "POST",
-//         data: data,
-//         dataType: "json",
-//         success: function (resp) {
-//             console.log(resp);
-//         },
-//         error: function(resp) {
-//             console.log(resp);
-//         }
-
-//     })
-
-//     e.preventDefault();
-// })
-document.getElementById("carBtnUp").addEventListener("click", moveCarUp);
+// Car Listeners JS
+document.getElementById("carBtnUp").addEventListener("mousedown", moveCarUp);
+document.getElementById("carBtnLeft").addEventListener("mousedown", moveCarLeft);
+document.getElementById("carBtnRight").addEventListener("mousedown", moveCarRight);
+document.getElementById("carBtnDown").addEventListener("mousedown", moveCarDown);
+document.getElementById("carBtnUp").addEventListener("mouseup", stopCar);
+document.getElementById("carBtnLeft").addEventListener("mouseup", stopCar);
+document.getElementById("carBtnRight").addEventListener("mouseup", stopCar);
+document.getElementById("carBtnDown").addEventListener("mouseup", stopCar);
 function moveCarUp() {
     $.ajax({
         url: "/freeDriving",
@@ -103,7 +90,7 @@ function moveCarUp() {
         }
     })
 }
-document.getElementById("carBtnLeft").addEventListener("click", moveCarLeft);
+
 function moveCarLeft() {
     $.ajax({
         url: "/freeDriving",
@@ -118,7 +105,7 @@ function moveCarLeft() {
         }
     })
 }
-document.getElementById("carBtnRight").addEventListener("click", moveCarRight);
+
 function moveCarRight() {
     $.ajax({
         url: "/freeDriving",
@@ -133,7 +120,7 @@ function moveCarRight() {
         }
     })
 }
-document.getElementById("carBtnDown").addEventListener("click", moveCarDown);
+
 function moveCarDown() {
     $.ajax({
         url: "/freeDriving",
@@ -148,3 +135,18 @@ function moveCarDown() {
         }
     })
 }
+function stopCar() {
+    $.ajax({
+        url: "/freeDriving",
+        type: "POST",
+        data: JSON.stringify("CarSTOP"),
+        contentType: "application/json",
+        success: function (resp) {
+            console.log(resp);
+        },
+        error: function (resp) {
+            console.log(resp);
+        }
+    })
+}
+//Car Listeners end
