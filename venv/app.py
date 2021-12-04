@@ -45,7 +45,7 @@ def admin_only(f):
 @app.route('/')
 @login_required
 def home():
-    return render_template('home.html')
+    return render_template('/dashboard/index.html')
 
 # Generic Routes such as: Login, Dashboard, 
 
@@ -66,6 +66,8 @@ def logout():
 @app.route('/challenges', methods=['GET'])
 def viewChallenges():
     return render_template('/challenges/index.html')
+
+
 
 # Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
 
@@ -114,6 +116,28 @@ def deleteUser():
     if request.method == 'POST':
         flash(User().deleteUser())
         return redirect('/admin/manageUsers')
+
+
+
+
+# Manage Challenge
+@app.route('/admin/manageChallenges')
+#@admin_only
+def viewManageChallenges():
+    return render_template('/admin/manageChallenges/manageChallenges.html')
+
+@app.route('/admin/manageChallenges/createChallenges', methods=['GET'])
+#@admin_only
+def viewCreateChallenges():
+    return render_template('/admin/manageChallenges/createChallenges.html')
+
+@app.route('/admin/manageChallenges/updateChallenges', methods=['GET'])
+#@admin_only
+def viewUpdateChallenges():
+    return render_template('/admin/manageChallenges/updateChallenges.html')
+
+
+
 
 if __name__ == '__main__':
     app.run(debug = True)
