@@ -110,11 +110,9 @@ def viewDashboard():
 def viewAdminDashboard():
     return render_template('/admin/dashboard/index.html')
 
-# Manage User
 
-
-@app.route('/admin/manageUsers')
 # Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
+
 # Manage Users
 @app.route('/admin/manageUsers', methods=['GET'])
 @admin_only
@@ -144,7 +142,6 @@ def updateUser():
         return render_template('/admin/manageUsers/updateUser.html', user=user)
 
 
-@app.route('/admin/manageUsers/createUser', methods=['GET'])
 @app.route('/admin/manageUsers/updateUserFlow', methods=['GET', 'POST'])
 @admin_only
 def updateUserFlow():
@@ -156,7 +153,6 @@ def updateUserFlow():
         return redirect('/admin/manageUsers')
 
 
-@app.route('/admin/manageUsers/createUser', methods=['POST'])
 @app.route('/admin/manageUsers/deleteUser', methods=['GET', 'POST'])
 @admin_only
 def deleteUser():
@@ -188,4 +184,4 @@ def viewUpdateChallenges():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(debug=True)
