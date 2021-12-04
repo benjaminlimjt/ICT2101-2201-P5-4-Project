@@ -1,7 +1,9 @@
-from flask import Flask, render_template, session, redirect
+from flask import Flask, render_template, session, redirect, request
 from functools import wraps
 from classes.user.models import User
+from classes.challenge.models import Challenge
 from topsecrets import SECRET_KEY
+from db import db
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
 
@@ -45,27 +47,24 @@ def viewLogin():
 @app.route('/login', methods=['POST'])
 def login():
     return User().login()
-
-    """
-    if "email" in session:
-        email = session["email"]
-        return render_template('login.html', email=email)
-    else:
-        return redirect("login")
-    """
     
-
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     return User().logout()
 
+# Challenge Routes
+
 @app.route('/challenges', methods=['GET'])
 def viewChallenges():
-    return render_template('/challenges/index.html')
+    challenges = db.challenges.find()
+    return render_template('/challenges/index.html', challenges=challenges)
 
+@app.route('/challenges/<id>', methods=['GET', 'POST'])
+def viewChallenge(id):
+    challenge = db.challenges.find_one({'challengeID': id})
+    return render_template('/challenges/'+id+'.html', challenge=challenge)
 
-
-# Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
+# Admin Specific Routes such as Manage Users, Manage Challenges, View Student Progress
 
 @app.route('/dashboard', methods=['GET'])
 def viewDashboard():
@@ -91,9 +90,6 @@ def viewCreateUser():
 def adminCreateUser():
     return User().createUser()
 
-
-
-
 # Manage Challenge
 @app.route('/admin/manageChallenges')
 #@admin_only
@@ -104,6 +100,10 @@ def viewManageChallenges():
 #@admin_only
 def viewCreateChallenges():
     return render_template('/admin/manageChallenges/createChallenges.html')
+
+@app.route('/xx', methods=['GET'])
+def xx():
+    return Challenge().insertChallenge()
 
 @app.route('/admin/manageChallenges/updateChallenges', methods=['GET'])
 #@admin_only

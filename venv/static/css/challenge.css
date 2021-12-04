@@ -3,8 +3,8 @@ body {
 }
 
 .challengeSuperContainer {
+    padding-left: 5rem;
     padding-top: 5rem;
-    display: flex;
 }
 
 
@@ -12,30 +12,27 @@ body {
     border-style: solid;
     background-color: #333;
     padding: 1rem;
-    margin-top: 1rem;
-    width: 10rem;
+    width: 15rem;
 }
 
 .inputCode_container {
     border-style: solid;
     background-color: #333;
     padding: 1rem;
-    margin-top: 1rem;
-    height: 50rem;
-    width: 40rem;
 }
 
-.draggable {
-    padding: 1rem;
-    background-color: white;
-    border: 1px solid black;
-    cursor: move;
+.virtualMap {
+    border-style: solid;
+    background-size: cover;
 }
 
-.dragging {
-    opacity: .5;
+.mapTile {
+    height: 5rem;
+    width: 5rem;
+    text-align: center;
 }
 
-ul {
-    list-style: none;
+.tile {
+    width: 100%;
+    display: block;
 }
