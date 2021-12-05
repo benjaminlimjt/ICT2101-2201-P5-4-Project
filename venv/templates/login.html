@@ -11,15 +11,15 @@
             <form name="login_form" id="login_form" method="post">
 
                 <label for="username">Username</label>
-                <input type="text" name="username" class="field" required>
+                <input type="text" name="username" class="field" id = "username" required>
 
                 <label for="password">Password</label>
-                <input type="password" name="password" class="field" required>
+                <input type="password" name="password" class="field" id = "passwd" required>
 
                 <p class="error error--hidden">
                 </p>
 
-                <input type="submit" value="Login" class="btn">
+                <input type="submit" value="Login" class="btn" onclick="validate();">
             </form>
         </div>
 
