@@ -114,11 +114,6 @@ function checkValidCoordinates() {
 
 document.getElementById("runCodeButton").addEventListener("click", function() {
 
-    //debug statements
-    console.log("Curr Car POSXY", carPosX, carPosY);
-    console.log("Future Car POSXY", carFuturePosX, carFuturePosY);
-    console.log("DEFAULT POSXY", carOGPosX, carOGPosY);
-
     var carTile = document.getElementById("carTileImage");
     var codeList = document.getElementById("inputCode_container").querySelectorAll(".list-group-item");
     

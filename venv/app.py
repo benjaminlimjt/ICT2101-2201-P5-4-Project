@@ -107,15 +107,6 @@ def viewChallenge(id):
     challenge = db.challenges.find_one({'challengeID': id})
     return render_template('/challenges/challenge.html', challenge=challenge)
 
-@app.route('/freeDriving', methods=['POST'])
-def sendMovementCommand():
-    return Processor().sendMovementCommand()
-
-@app.route('/freeDriving/getCarCommands', methods=['GET'])
-def getMovementCommand():
-    return Processor().getMovementCommand()
-
-
 # Admin Specific Routes such as Manage Users, Manage Challenges, View Student Progress
 
 
