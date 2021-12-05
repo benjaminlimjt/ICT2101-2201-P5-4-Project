@@ -24,15 +24,22 @@ body {
 .virtualMap {
     border-style: solid;
     background-size: cover;
+    background-color: white; 
+    table-layout: fixed; 
+    width:40rem;
 }
 
 .mapTile {
-    height: 5rem;
-    width: 5rem;
+    height: 8rem;
+    width: 8rem;
     text-align: center;
 }
 
 .tile {
     width: 100%;
     display: block;
+}
+
+.red {
+    color: red;
 }
