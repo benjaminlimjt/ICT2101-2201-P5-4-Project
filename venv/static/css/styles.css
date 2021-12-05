@@ -16,6 +16,7 @@
   --primary-dark: #1976D2;
   --secondary: #CFD8DC;
   --secondary-dark: #B0BEC5;
+  --green: #12b812a9;
   --red: #EF4836;
 }
 
@@ -31,6 +32,7 @@ body {
   line-height: 28px;
   color: var(--black);
   background: var(--grey-light);
+  background-image: url("./../img/bg.png");
 }
 
 /* Typography */
@@ -126,6 +128,19 @@ label {
   border-color: var(--grey-medium);
   outline: none;
 }
+
+.success {
+  margin: 0;
+  font-size: 16px;
+  line-height: 26px;
+  text-align: center;
+  color: var(--green);
+}
+
+.success--hidden {
+  display: none;
+}
+
 
 .error {
   margin: 0;
