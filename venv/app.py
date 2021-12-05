@@ -97,10 +97,15 @@ def viewChallenges():
     challenges = db.challenges.find()
     return render_template('/challenges/index.html', challenges=challenges)
 
+@app.route('/challenges/tutorial', methods=['GET', 'POST'])
+def viewTutorial():
+    challenge = db.challenges.find_one({'challengeID' : "0"})
+    return render_template('/challenges/tutorial.html', challenge=challenge)
+
 @app.route('/challenges/<id>', methods=['GET', 'POST'])
 def viewChallenge(id):
     challenge = db.challenges.find_one({'challengeID': id})
-    return render_template('/challenges/'+id+'.html', challenge=challenge)
+    return render_template('/challenges/challenge.html', challenge=challenge)
 
 @app.route('/freeDriving', methods=['POST'])
 def sendMovementCommand():

@@ -22,9 +22,11 @@
                                 {% if cell == 0 %}
                                     <td class="mapTile"></td>
                                 {% elif cell == 1 %}
-                                    <td class="mapTile wallTile"><img class="tile wallTile" id="wallTileImage" src="/static/img/wall.png"></td>
+                                    <td class="mapTile wallTile"><img class="tile wallTileImage" id="wallTileImage" src="/static/img/wall.png"></td>
                                 {% elif cell == 2 %}
                                     <td class="mapTile" id="carTile"><img class="tile carTileImage" id="carTileImage" src="/static/img/car.png"></td>
+                                {% elif cell == 3 %}
+                                    <td class="mapTile targetTile" id="targetTile"><img class="tile targetTileImage" id="targetTileImage" src="/static/img/target.png"></td>
                                 {% endif %}
                             {% endfor %}
                         </tr>

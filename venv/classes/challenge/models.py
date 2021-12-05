@@ -23,15 +23,15 @@ class Challenge:
     
     def insertChallenge(self):
         self._id = uuid.uuid4().hex
-        self.challengeID = "1"
-        self.challengeName = "Challenge Name"
-        self.challengeDescription = "Description"
+        self.challengeID = "0"
+        self.challengeName = "Tutorial"
+        self.challengeDescription = "Welcome to the Tutorial!"
         self.challengeData = [
-                        [0,0,0,0,0],
-                        [0,0,0,0,0],
-                        [0,0,0,0,0],
-                        [0,0,0,0,0],
-                        [0,0,0,0,0]
+                        [1,1,1,1,1],
+                        [3,0,0,0,1],
+                        [1,1,1,0,1],
+                        [1,2,0,0,1],
+                        [1,1,1,1,1]
                         ]
 
         db.challenges.insert_one(self.toJSON())

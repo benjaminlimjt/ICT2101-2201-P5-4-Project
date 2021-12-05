@@ -27,9 +27,15 @@ var virtualMapTable = document.getElementById("virtualMap");
 var virtualMapGrid = JSON.parse(challengeMap);
 var carPosX = 0;
 var carPosY = 0;
+var carOGPosX = 0;
+var carOGPosY = 0;
+var carFuturePosX = 0;
+var carFuturePosY = 0;
 
 var maxPosX = virtualMapGrid.length-1;
 var maxPosY = virtualMapGrid.length-1;
+
+var dog = 0;
 
 // Initial Locate Car
 loop2:
@@ -41,53 +47,78 @@ loop2:
         }
     }
 
-var carFuturePosX = carPosX;
-var carFuturePosY = carPosY;
+carOGPosX = carPosX;
+carOGPosY = carPosY;   
+carFuturePosX = carPosX;
+carFuturePosY = carPosY;
 
-document.getElementById("stopCodeButton").addEventListener("click", function() {
+
+function reset() {
     var id = window.setTimeout(function () {}, 0);
     while (id--) {
         window.clearTimeout(id);
     }
     document.getElementById("runCodeButton").removeAttribute("disabled");
-    var redList = document.querySelector(".red");
+    var redList = document.querySelectorAll(".red");
     if (redList !==null) {
-        redList.classList.remove("red");
+        redList.forEach(el => el.classList.remove("red"));
     }
-});
+    var carTile = document.getElementById("carTileImage");
+    virtualMapTable.rows[carOGPosY].cells[carOGPosX].appendChild(carTile);
+    $('.carTileImage').css('-webkit-transform', "rotate(0deg)");
+    currentCarDegree = 0;
+
+    carPosX = carOGPosX;
+    carPosY = carOGPosY;
+    carFuturePosX = carOGPosX;
+    carFuturePosY = carOGPosY;
+}
+
+document.getElementById("stopCodeButton").addEventListener("click", reset);
 
 function checkValidCoordinates() {
     if (carFuturePosX == -1) {
         carFuturePosX = 0;
-        return false;
+        return 0;
     }
     if (carFuturePosX > maxPosX) {
         carFuturePosX = maxPosX;
-        return false;
+        return 0;
     }
     if (carFuturePosY == -1) {
         carFuturePosY = 0;
-        return false;
+        return 0;
     }
     if (carFuturePosY > maxPosY) {
         carFuturePosY = maxPosY;
-        return false;
+        return 0;
     }
 
     if(virtualMapTable.rows[carFuturePosY].cells[carFuturePosX].classList.contains("wallTile")) {
-        carFuturePosX = carPosX;
-        carFuturePosY = carPosY;
-        return false;
+
+        return 0;
+    }
+
+    if(virtualMapTable.rows[carFuturePosY].cells[carFuturePosX].classList.contains("targetTile")) {
+
+        return 2;
     }
 
     carPosX = carFuturePosX;
     carPosY = carFuturePosY;
 
-    return true;
+    return 1;
+
 }
 
 
 document.getElementById("runCodeButton").addEventListener("click", function() {
+
+    //debug statements
+    console.log("Curr Car POSXY", carPosX, carPosY);
+    console.log("Future Car POSXY", carFuturePosX, carFuturePosY);
+    console.log("DEFAULT POSXY", carOGPosX, carOGPosY);
+
     var carTile = document.getElementById("carTileImage");
     var codeList = document.getElementById("inputCode_container").querySelectorAll(".list-group-item");
     
@@ -137,10 +168,21 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                             carFuturePosY += 1;
                             break;
                     };
-
-                    if(checkValidCoordinates()) {
+                    console.log("futureposxyhw",carFuturePosX,carFuturePosY);
+                    if(checkValidCoordinates() == 1) {
                         virtualMapTable.rows[carPosY].cells[carPosX].appendChild(carTile);
                         moveCarUp();
+                    }
+                    else if (checkValidCoordinates() == 2) {
+                        alert("Successfully completed the puzzle!");
+                        reset();
+                        return;
+                    }
+                    else {
+                        console.log(checkValidCoordinates());
+                        alert("Failed the puzzle.");
+                        reset();
+                        return;
                     }
                 }
 
@@ -163,16 +205,23 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                             carFuturePosY -= 1;
                             break;
                     }
-
-                    if(checkValidCoordinates()) {
+                    if(checkValidCoordinates() == 1) {
                         virtualMapTable.rows[carPosY].cells[carPosX].appendChild(carTile);
                         moveCarDown();
                     }
+                    else if (checkValidCoordinates() == 2) {
+                        alert("Successfully completed the puzzle!");
+                        reset();
+                        return;
+                    }
+                    else {
+                        alert("Failed the puzzle.");
+                        reset();
+                        return;
+                    }
                 }
                 $('.carTileImage').css('-webkit-transform', "rotate("+currentCarDegree+"deg)");
-
-
-             }, 1000 * i); 
+             }, 5000 * i); 
         }(i));
 
         // Secondary Timer to remove "active" code
