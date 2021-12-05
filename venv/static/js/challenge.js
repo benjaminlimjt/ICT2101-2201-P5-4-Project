@@ -37,7 +37,7 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                 codeList[i].classList.add('red')
                 commandHistoryBox.innerHTML += codeList[i].textContent + "<br>";
                 // Read Command and Rotate Car
-                if(codeList[i].textContent == "Turn Left" && codeList[i+1].textContent) {
+                if(codeList[i].textContent == "Turn Left") {
                     currentCarDegree-= 90;
                 }
                 if(codeList[i].textContent == "Turn Right") {
