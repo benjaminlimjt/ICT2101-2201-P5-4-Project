@@ -1,6 +1,8 @@
+// Create User Form
 $("form[name=createUser_form").submit(function (e) {
 
     var $form = $(this);
+    var $success = $form.find(".success");
     var $error = $form.find(".error");
     var data = $form.serialize();
 
@@ -10,18 +12,57 @@ $("form[name=createUser_form").submit(function (e) {
         data: data,
         dataType: "json",
         success: function (resp) {
-            console.log(resp);
+            $error.text("").addClass("error--hidden");
+            $success.text(resp.success).removeClass("success--hidden");
+            document.getElementById("createUser_form").reset();
         },
-        error: function(resp) {
-            console.log(resp);
-        }
+        error: function (resp) {
+            $success.text("").addClass("success--hidden");
+            $error.text(resp.responseJSON.error).removeClass("error--hidden");
+        },
 
     })
 
     e.preventDefault();
 })
 
-$("form[name=login_form").submit(function (e) {
+function validate() {
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("passwd").value;
+            if (username == null || username == "") {
+                alert("Please enter the username.");
+                return false;
+            }
+            if (password == null || password == "") {
+                alert("Please enter the password.");
+                return false;
+            }
+            
+    $("form[name=login_form").submit(function (e) {
+
+        var $form = $(this);
+        var $error = $form.find(".error");
+        var data = $form.serialize();
+
+        $.ajax({
+            url: "/login",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            success: function (resp) {
+                console.log(resp);
+            },
+            error: function (resp) {
+                console.log(resp);
+            }
+
+        })
+
+        e.preventDefault();
+    })
+                    
+}
+$("form[name=sendData_form").submit(function (e) {
 
     var $form = $(this);
     var $error = $form.find(".error");
@@ -35,7 +76,7 @@ $("form[name=login_form").submit(function (e) {
         success: function (resp) {
             console.log(resp);
         },
-        error: function(resp) {
+        error: function (resp) {
             console.log(resp);
         }
 
@@ -44,7 +85,15 @@ $("form[name=login_form").submit(function (e) {
     e.preventDefault();
 })
 
-//CAR JS
+// Car Listeners JS
+document.getElementById("carBtnUp").addEventListener("mousedown", moveCarUp);
+document.getElementById("carBtnLeft").addEventListener("mousedown", moveCarLeft);
+document.getElementById("carBtnRight").addEventListener("mousedown", moveCarRight);
+document.getElementById("carBtnDown").addEventListener("mousedown", moveCarDown);
+document.getElementById("carBtnUp").addEventListener("mouseup", stopCar);
+document.getElementById("carBtnLeft").addEventListener("mouseup", stopCar);
+document.getElementById("carBtnRight").addEventListener("mouseup", stopCar);
+document.getElementById("carBtnDown").addEventListener("mouseup", stopCar);
 
 function moveCarUp() {
     $.ajax({
@@ -119,6 +168,7 @@ function stopCar() {
         }
     })
 }
+
 function sendCommandList(cmdList){
     $.ajax({
         url: "/freeDriving",
