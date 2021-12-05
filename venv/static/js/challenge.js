@@ -94,7 +94,7 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
     // Disable Run Button
     document.getElementById("runCodeButton").setAttribute("disabled", true);
 
-    var commandHistoryBox = document.getElementById("commandHistory");
+    var commandHistoryBox = document.getElementById("commandHistoryBox");
     commandHistoryBox.innerHTML = "";
 
         // Main Timer to loop through input code
