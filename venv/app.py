@@ -90,14 +90,13 @@ def updateSensorData(data):
     res = Processor().updateSensorData(data)
     return res + "Data from request = " + data
 
-
 # Challenge Routes
 @app.route('/challenges', methods=['GET'])
 def viewChallenges():
     challenges = db.challenges.find()
     return render_template('/challenges/index.html', challenges=challenges)
 
-@app.route('/challenges/tutorial', methods=['GET', 'POST'])
+@app.route('/tutorial', methods=['GET', 'POST'])
 def viewTutorial():
     challenge = db.challenges.find_one({'challengeID' : "0"})
     return render_template('/challenges/tutorial.html', challenge=challenge)

@@ -3,5 +3,8 @@ bin/*
 Lib/*
 lib/*
 Scripts/*
+static/node_modules/*
+static/package.json
+static/package-lock.json
 pyvenv.cfg
 topsecrets.py

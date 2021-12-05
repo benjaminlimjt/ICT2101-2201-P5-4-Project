@@ -3,6 +3,7 @@
 {% block content %}
 
 <link rel="stylesheet" href="/static/css/challenge.css">
+<link rel="stylesheet" href="/static/node_modules/shepherd.js/dist/css/shepherd.css" />
 
 <div class="challengeSuperContainer">
     <div class="row">
@@ -79,6 +80,73 @@
 <script src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js" defer></script>
 <script src="https://unpkg.com/bootstrap@4.4.1/dist/js/bootstrap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js" defer></script>
+<script src="/static/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="/static/node_modules/shepherd.js/dist/js/shepherd.min.js"></script>
+<script>
+
+    const tour = new Shepherd.Tour({
+        defaultStepOptions: {
+            cancelIcon: {
+            enabled: true
+            },
+            classes: 'class-1 class-2',
+            scrollTo: { behavior: 'smooth', block: 'center' }
+        }
+        });
+
+        tour.addStep({
+        title: 'The Challenge Page',
+        text: 'Welcome to the challenge Page!',
+        attachTo: {
+            element: '.hero-example',
+            on: 'bottom'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'welcome'
+        });
+
+        tour.addStep({
+        title: 'Virtual Map',
+        text: 'This is the Virtual Map, where changes will be reflected.',
+        attachTo: {
+            element: '.virtualMap',
+            on: 'bottom'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'virtualMap'
+        });
+
+    tour.start();
+
+</script>
 
 <script type="text/javascript" defer>var challengeMap = "{{ challenge['challengeData']|safe }}"; </script>
 <script type="text/javascript" src="/static/js/challenge.js" defer></script>
