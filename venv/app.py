@@ -185,7 +185,8 @@ def viewCreateChallenges():
         return render_template('/admin/manageChallenges/createChallenges.html')
     
     if request.method == 'POST':
-        return Challenge().createChallenge()
+        flash(Challenge().createChallenge())
+        return redirect('/admin/manageChallenges/createChallenges')
 
 @app.route('/xx', methods=['GET'])
 def xx():

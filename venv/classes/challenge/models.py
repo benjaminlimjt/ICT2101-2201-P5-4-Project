@@ -50,4 +50,4 @@ class Challenge:
 
 
         db.challenges.insert_one(self.toJSON())
-        return "Successfully created challenge.", 200
+        return "Successfully created challenge."
