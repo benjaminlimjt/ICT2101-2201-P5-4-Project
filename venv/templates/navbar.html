@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a href="/" class="navbar-brand">
+      <img
+        class="img-responsive guido"
+        src="/static/img/Guido.png"
+        style="height: 150px"
+        alt="Guido"
+      />
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#base-navbars"
+      aria-controls="base-navbars"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="base-navbars">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/scoreboard">Scoreboard</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/tutorial">Tutorial</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/challenges">Challenges</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/freestyle">Free Driving</a>
+        </li>
+      </ul>
+
+      <hr class="d-sm-flex d-md-flex d-lg-none" />
+
+      <ul class="navbar-nav ml-md-auto d-block d-sm-flex d-md-flex">
+        <li class="nav-item">
+          <a class="nav-link" href="/profile">
+            <span
+              class="d-block"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title=""
+              data-original-title="Profile"
+            >
+              <i class="fas fa-user-circle d-none d-md-block d-lg-none"></i>
+            </span>
+            <span class="d-sm-block d-md-none d-lg-block">
+              <i class="fas fa-user-circle pr-1"></i>Profile
+            </span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">
+            <span
+              class="d-block"
+              data-toggle="tooltip"
+              data-placement="bottom"
+              title=""
+              data-original-title="Logout"
+            >
+              <i class="fas fa-sign-out-alt d-none d-md-block d-lg-none"></i>
+            </span>
+            <span class="d-sm-block d-md-none d-lg-block">
+              <i class="fas fa-sign-out-alt pr-1"></i
+              ><span class="d-lg-none">Logout</span>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

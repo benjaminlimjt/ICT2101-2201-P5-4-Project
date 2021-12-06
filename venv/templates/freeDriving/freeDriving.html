@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<link rel="stylesheet" href="./../../static/css/freeDriving.css">
+
+
+
+{% endblock %}
+
+
+{% block content %}
+
+
+<content>
+    <div class="p-5 bg-yellow-100 text-black text-center text-3xl rounded bg-opacity-90 mt-20">
+        <h1 class="font-bold">Free Driving Mode</h1>
+    </div>
+    <div class=" d-flex justify-content-center card-freedriving mt-20 ">
+
+        <div class=" justify-content-center card rounded h-auto text-center w-10/12 bg-blue-200 bg-opacity-90 ">
+            <div class="card-body ">
+                <p class="font-bold text-4xl">Click the button to move the car</p>
+
+                <div class=" card-button my-4 ">
+                    <button id="carBtnUp">
+                        <em class="fas fa-arrow-alt-circle-up fa-7x mb-3"></em>
+                    </button>
+                    
+
+                    <br>
+
+                    <div class=" my-2 space-x-44  ">
+                        <button id="carBtnLeft">
+                        <em class="fas fa-arrow-alt-circle-left fa-7x "></em>
+                        </button>
+                        <button id="carBtnRight">
+                        <em class="fas fa-arrow-alt-circle-right fa-7x "></em>
+                        </button>
+                    </div>
+
+
+                    <br>
+                    <button id="carBtnDown">
+                    <em class="fas fa-arrow-alt-circle-down fa-7x mt-3"></em>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class=" d-flex justify-content-center card-freedriving">
+
+        <div class="card rounded h-auto text-center w-10/12 ">
+            <div class="card-body ">
+                <p class="font-bold text-4xl">Sensor Data</p>
+
+                <div class=" card-button ">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</content>
+
+{% endblock %}

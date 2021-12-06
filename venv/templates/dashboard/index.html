@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main role="main">
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1 style="color: white;">Dashboard</h1>
+        </div>
+    </div>
+
+    <div class="modal fade" id="dashboard-window" tabindex="-1" role="dialog">
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div id="dashboard-sensor">
+           
+           
+            <div id="-1807658801-row" class="pt-5">
+                <div class="category-header col-md-12 mb-3">
+                    <h3>Sensor data</h3>
+                </div>
+                <div class="card" style="width: 25rem;">
+                    <div class="card-body">
+                      <h5 class="card-title">Health Check</h5>
+                      <p class="card-text text-success">Wi-fi Module</p>
+                      <p class="card-text text-success">Ultrasonic Sensor</p>
+                      <a href="#" class="card-link">Learn more about sensors</a>
+                    
+                  </div>
+            </div>
+            
+        </div>
+
+        <div id="dashboard-commands">
+           
+
+            <div id="-1807658801-row" class="pt-5">
+                <div class="category-header col-md-12 mb-3">
+                    <h3>Guido Statistics</h3>
+                </div>
+                <div class="card">
+                    <img src="..." class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Maximum Speed</h5>
+                      <p class="card-text ">The car has a reach a maximum speed of 8km/h.</p>
+                      <p class="card-text"><small class="text-muted">Last updated [] mins ago</small></p>
+                    </div>
+                
+                    
+            </div>
+            
+        </div>
+
+        <div id="-1807658802-row" class="pt-5">
+            <div class="category-header col-md-5 mb-3">
+            </div>
+
+        <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Distance Travelled</h5>
+              <p class="card-text ">The car has travelled a total distance of 2km.</p>
+              <p class="card-text"><small class="text-muted">Last updated [] mins ago</small></p>
+            </div>
+
+    </div>
+
+</div>
+
+</main>
+
+{% endblock %}

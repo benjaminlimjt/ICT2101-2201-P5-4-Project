@@ -1,0 +1,38 @@
+.card-freedriving {
+    /* margin-top: 15rem !important;
+    margin-bottom: 10rem !important; */
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+
+.card-button {
+    margin-top: 3rem !important;
+
+}
+
+.card-button-front {
+    margin-bottom: 1rem !important;
+}
+
+.left-right-buttons{
+
+    margin-top: 0.5rem;
+margin-bottom: 0.5rem;
+}
+
+
+.card-button-left {
+    margin-right: 2.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.card-button-right {
+    margin-left: 2.5rem;
+margin-top: 1rem;
+margin-bottom: 1rem;
+}
+
+.card-button-back {
+    margin-top: 0rem !important;
+    }
