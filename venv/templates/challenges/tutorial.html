@@ -3,6 +3,7 @@
 {% block content %}
 
 <link rel="stylesheet" href="/static/css/challenge.css">
+<link rel="stylesheet" href="/static/node_modules/shepherd.js/dist/css/shepherd.css" />
 
 <div class="challengeSuperContainer">
     <div class="row">
@@ -32,7 +33,9 @@
                         </tr>
                     {% endfor %}
                 </table>
-                <div id="carInfoContainer">
+
+                <div id="carInfoContainer" class="carInfoContainer">
+
                     <h3>car Speed</h3>
                     <div class="carSpeed">
                         <div class="carSpeedBox">
@@ -79,6 +82,220 @@
 <script src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js" defer></script>
 <script src="https://unpkg.com/bootstrap@4.4.1/dist/js/bootstrap.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js" defer></script>
+<script src="/static/node_modules/@popperjs/core/dist/umd/popper.min.js"></script>
+<script src="/static/node_modules/shepherd.js/dist/js/shepherd.min.js"></script>
+<script>
+
+    const tour = new Shepherd.Tour({
+        defaultStepOptions: {
+            cancelIcon: {
+            enabled: true
+            },
+            classes: 'class-1 class-2',
+            scrollTo: { behavior: 'smooth', block: 'center' }
+        }
+        });
+
+        tour.addStep({
+        title: 'The Challenge Page',
+        text: 'Welcome to the Challenge Page!',
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'welcome'
+        });
+
+        tour.addStep({
+        title: 'Play Blocks Container',
+        text: 'This is the Play Blocks container, where you can drag and drop the code blocks into the Code Container.',
+        attachTo: {
+            element: '.sourceCode_container',
+            on: 'bottom'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'sourceCodeContainer'
+        });
+
+        tour.addStep({
+        title: 'Code Container',
+        text: 'This is the Code Container. Drag the blocks from the Play Blocks container to move the car!',
+        attachTo: {
+            element: '.inputCode_container',
+            on: 'bottom'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'inputCodeContainer'
+        });
+
+        tour.addStep({
+        title: 'Virtual Map',
+        text: 'This is the Virtual Map. Changes to the car are reflected here!',
+        attachTo: {
+            element: '.virtualMap',
+            on: 'right'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'virtualMap'
+        });
+
+        tour.addStep({
+        title: 'Command History',
+        text: 'This is the Command History. Commands executed previously can be seen here!',
+        attachTo: {
+            element: '.commandHistoryBox',
+            on: 'left'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'virtualMap'
+        });
+
+        tour.addStep({
+        title: 'Car Info',
+        text: 'This is where you can see information of the car!',
+        attachTo: {
+            element: '.carInfoContainer',
+            on: 'right'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'carInfo'
+        });
+
+        tour.addStep({
+        title: 'Car Speed',
+        text: 'This is the Car Speed!',
+        attachTo: {
+            element: '.carSpeedBox',
+            on: 'right'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'carSpeed'
+        });
+
+        tour.addStep({
+        title: 'Obstacle Distance',
+        text: 'This is the Obstacle Distance!',
+        attachTo: {
+            element: '.obstacleDistanceBox',
+            on: 'right'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'obstacleDistance'
+        });
+
+
+    tour.start();
+
+</script>
 
 <script type="text/javascript" defer>var challengeMap = "{{ challenge['challengeData']|safe }}"; </script>
 <script type="text/javascript" src="/static/js/challenge.js" defer></script>

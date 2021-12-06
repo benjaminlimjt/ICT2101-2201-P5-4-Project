@@ -33,7 +33,7 @@ function validate() {
                 alert("Please enter the username.");
                 return false;
             }
-            if (password == null || password == "") {
+            if (password == null     || password == "") {
                 alert("Please enter the password.");
                 return false;
             }
@@ -51,6 +51,7 @@ function validate() {
             dataType: "json",
             success: function (resp) {
                 console.log(resp);
+                window.location.href = "/";
             },
             error: function (resp) {
                 console.log(resp);
