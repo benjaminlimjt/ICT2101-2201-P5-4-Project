@@ -1,40 +1,38 @@
-{% extends "base.html" %}
-
-{% block content %}
-
-    <div class="card-wrapper">
-
-        <div class="card">
-
-            <h1 class="center">Create an Account</h1>
-
-            <form name="createUser_form" id="createUser_form" method="post">
-
-                <label for="username">Username</label>
-                <input type="text" name="username" class="field" required>
-
-                <label for="password">Password</label>
-                <input type="password" name="password" class="field" required>
-
-                <label for="name">Name</label>
-                <input type="text" name="name" class="field" required>
-                
-                <label for="role">Role</label>
-                <select name="role" id="role">
-                    <option value="admin">Admin</option>
-                    <option value="student">Student</option>
-                </select>
-
-                <p class="success success--hidden">
-                </p>
-
-                <p class="error error--hidden">
-                </p>
-
-                <input type="submit" value="Create User" class="btn">
-            </form>
-        </div>
-
+{% extends "base.html" %} {% block content %}
+<main role="main">
+  <div class="jumbotron">
+    <div class="container">
+      <h1 style="color: white">Create an Account</h1>
     </div>
+  </div>
 
+  <div class="card-wrapper">
+    <div class="card">
+      <h1 class="center">Create an Account</h1>
+
+      <form name="createUser_form" id="createUser_form" method="post">
+        <label for="username">Username</label>
+        <input type="text" name="username" class="field" required />
+
+        <label for="password">Password</label>
+        <input type="password" name="password" class="field" required />
+
+        <label for="name">Name</label>
+        <input type="text" name="name" class="field" required />
+
+        <label for="role">Role</label>
+        <select name="role" id="role">
+          <option value="admin">Admin</option>
+          <option value="student">Student</option>
+        </select>
+
+        <p class="success success--hidden"></p>
+
+        <p class="error error--hidden"></p>
+
+        <input type="submit" value="Create User" class="btn" />
+      </form>
+    </div>
+  </div>
+</main>
 {% endblock %}
