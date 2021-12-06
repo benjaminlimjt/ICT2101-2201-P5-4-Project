@@ -115,14 +115,14 @@ def viewAdminDashboard():
 
 # Manage Users
 @app.route('/admin/manageUsers', methods=['GET'])
-@admin_only
+#@admin_only
 def manageUsers():
     userList = db.users.find()
     return render_template('/admin/manageUsers/manageUsers.html', userList=userList)
 
 
 @app.route('/admin/manageUsers/createUser', methods=['GET', 'POST'])
-@admin_only
+#@admin_only
 def createUser():
     if request.method == 'GET':
         return render_template('/admin/manageUsers/createUser.html')
@@ -132,7 +132,7 @@ def createUser():
 
 
 @app.route('/admin/manageUsers/updateUser', methods=['GET', 'POST'])
-@admin_only
+#@admin_only
 def updateUser():
     if request.method == 'GET':
         return redirect('/')
@@ -143,7 +143,7 @@ def updateUser():
 
 
 @app.route('/admin/manageUsers/updateUserFlow', methods=['GET', 'POST'])
-@admin_only
+#@admin_only
 def updateUserFlow():
     if request.method == 'GET':
         return redirect('/')
@@ -154,7 +154,7 @@ def updateUserFlow():
 
 
 @app.route('/admin/manageUsers/deleteUser', methods=['GET', 'POST'])
-@admin_only
+#@admin_only
 def deleteUser():
     if request.method == 'GET':
         return redirect('/')
