@@ -1,6 +1,7 @@
 from flask import Flask, request, session, redirect
 import json
 import uuid
+import urllib.parse
 from db import db
 
 class Challenge:
@@ -36,3 +37,17 @@ class Challenge:
 
         db.challenges.insert_one(self.toJSON())
         return "Successfully added challenge"
+
+    def createChallenge(self):
+
+        parsedData = urllib.parse.parse_qs(request.form['formData'])
+    
+        self._id = uuid.uuid4().hex
+        self.challengeID = parsedData['challengeID'][0]
+        self.challengeName = parsedData['challengeName'][0]
+        self.challengeDescription = parsedData['challengeDescription'][0]
+        self.challengeData = json.loads(request.form['challengeData'])
+
+
+        db.challenges.insert_one(self.toJSON())
+        return "Successfully created challenge.", 200
