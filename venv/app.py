@@ -84,6 +84,9 @@ def sendMovementCommand():
 @app.route('/freeDriving/getCarCommands', methods=['GET'])
 def getMovementCommand():
     return Processor().getMovementCommand()
+@app.route('/freeDriving/getSensorData', methods=['GET'])
+def getSensorData():
+    return Processor().getSensorData()
 
 @app.route('/freeDriving/sensorData/<data>', methods=['GET', 'POST'])
 def updateSensorData(data):
@@ -97,7 +100,7 @@ def viewChallenges():
     challenges = db.challenges.find()
     return render_template('/challenges/index.html', challenges=challenges)
 
-@app.route('/challenges/tutorial', methods=['GET', 'POST'])
+@app.route('/tutorial', methods=['GET', 'POST'])
 def viewTutorial():
     challenge = db.challenges.find_one({'challengeID' : "0"})
     return render_template('/challenges/tutorial.html', challenge=challenge)
@@ -120,7 +123,7 @@ def viewAdminDashboard():
     return render_template('/admin/dashboard/index.html')
 
 
-# Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
+# Admin Specific Routes such as Manage Users, Manage Challenges, View Student Progress
 
 # Manage Users
 @app.route('/admin/manageUsers', methods=['GET'])
@@ -171,8 +174,6 @@ def deleteUser():
         flash(User().deleteUser())
         return redirect('/admin/manageUsers')
 
-
-
 # Manage Challenge
 @app.route('/admin/manageChallenges')
 # @admin_only
@@ -180,10 +181,16 @@ def viewManageChallenges():
     return render_template('/admin/manageChallenges/manageChallenges.html')
 
 
-@app.route('/admin/manageChallenges/createChallenges', methods=['GET'])
+@app.route('/admin/manageChallenges/createChallenges', methods=['GET', 'POST'])
 # @admin_only
 def viewCreateChallenges():
-    return render_template('/admin/manageChallenges/createChallenges.html')
+
+    if request.method == 'GET':
+        return render_template('/admin/manageChallenges/createChallenges.html')
+    
+    if request.method == 'POST':
+        flash(Challenge().createChallenge())
+        return redirect('/admin/manageChallenges/createChallenges')
 
 @app.route('/xx', methods=['GET'])
 def xx():

@@ -75,7 +75,19 @@ function reset() {
 }
 
 document.getElementById("stopCodeButton").addEventListener("click", reset);
-
+function getSensorDataDB(){
+    $.ajax({
+        url: "/freeDriving/getSensorData",
+        type: "GET",
+        success: function (resp) {
+            document.getElementById("objDistVal").innerHTML = resp;
+            console.log("SENSORDATA FRONTEND CHANGED");
+        },
+        error: function (resp) {
+            console.log("SENSORDATA AJAX FAILED:",resp);
+        }
+    })
+}
 function checkValidCoordinates() {
     if (carFuturePosX == -1) {
         carFuturePosX = 0;
@@ -116,17 +128,18 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
 
     var carTile = document.getElementById("carTileImage");
     var codeList = document.getElementById("inputCode_container").querySelectorAll(".list-group-item");
-    
     // Disable Run Button
     document.getElementById("runCodeButton").setAttribute("disabled", true);
 
     var commandHistoryBox = document.getElementById("commandHistoryBox");
     commandHistoryBox.innerHTML = "";
-
+    var Delay = 7000;
         // Main Timer to loop through input code
     for (var i = 0, len = codeList.length; i < len; i++) {
         (function(i){
             setTimeout(function(){
+                 //update sensorData
+                getSensorDataDB();
                 // Highlights the "currently" parsing code
                 codeList[i].classList.add('red')
                 commandHistoryBox.innerHTML += codeList[i].textContent + "<br>";
@@ -144,6 +157,10 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                 if (currentCarDegree > 360) {
                     currentCarDegree = 0;
                 }
+
+                if (currentCarDegree < 0) {
+                    currentCarDegree += 360;
+                }
                 if(codeList[i].textContent == "Move Front") {
                     var direction = Math.abs((currentCarDegree / 90) % 4);
                     switch(direction) {
@@ -152,7 +169,7 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                             break;
                         
                         case 1:
-                            carFuturePosY -= 1;
+                            carFuturePosY += 1;
                             break;
                         
                         case 2:
@@ -160,10 +177,9 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                             break;
                         
                         case 3:
-                            carFuturePosY += 1;
+                            carFuturePosY -= 1;
                             break;
                     };
-                    console.log("futureposxyhw",carFuturePosX,carFuturePosY);
                     if(checkValidCoordinates() == 1) {
                         virtualMapTable.rows[carPosY].cells[carPosX].appendChild(carTile);
                         moveCarUp();
@@ -174,7 +190,6 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                         return;
                     }
                     else {
-                        console.log(checkValidCoordinates());
                         alert("Failed the puzzle.");
                         reset();
                         return;
@@ -189,7 +204,7 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                             break;
                         
                         case 1:
-                            carFuturePosY += 1;
+                            carFuturePosY -= 1;
                             break;
                         
                         case 2:
@@ -197,7 +212,7 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                             break;
                         
                         case 3:
-                            carFuturePosY -= 1;
+                            carFuturePosY += 1;
                             break;
                     }
                     if(checkValidCoordinates() == 1) {
@@ -216,22 +231,29 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                     }
                 }
                 $('.carTileImage').css('-webkit-transform', "rotate("+currentCarDegree+"deg)");
-             }, 5000 * i); 
+             }, Delay * i); 
         }(i));
-
+       
         // Secondary Timer to remove "active" code
         (function(i){
             setTimeout(function(){
                 codeList[i].classList.remove('red')
-            }, 5000 + (5000 * i));
+            }, Delay + (Delay * i));
         }(i));
 
         // Final timer to enable run button
         (function(len){
             setTimeout(function(){
                 document.getElementById("runCodeButton").removeAttribute("disabled");
-            }, 5000 * len);
+                if (i == len) {
+                    alert("Sorry, all steps have been run but you have not reached target! Try again! :)");
+                    reset();
+                    return;
+                }
+            }, Delay * len);
         }(len));
     }
+
+    
 
 });
