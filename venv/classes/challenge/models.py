@@ -35,6 +35,9 @@ class Challenge:
                         [1,1,1,1,1]
                         ]
 
+        if(db.challenges.find_one({'challengeID': "0"})):
+            return "Failed to add challenge"
+
         db.challenges.insert_one(self.toJSON())
         return "Successfully added challenge"
 
@@ -47,7 +50,6 @@ class Challenge:
         self.challengeName = parsedData['challengeName'][0]
         self.challengeDescription = parsedData['challengeDescription'][0]
         self.challengeData = json.loads(request.form['challengeData'])
-
 
         db.challenges.insert_one(self.toJSON())
         return "Successfully created challenge."
