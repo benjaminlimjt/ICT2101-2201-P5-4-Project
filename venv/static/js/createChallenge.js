@@ -77,10 +77,10 @@ $("form[name=createChallenge_form").submit(function (e) {
         data: {"formData": data, "challengeData": JSON.stringify(challengeData)},
         dataType: "json",
         success: function (resp) {
-            
+            alert("Successfully created challenge!");
         },
         error: function (resp) {
-            
+            alert("Failed to create challenge!");
         }
 
     })

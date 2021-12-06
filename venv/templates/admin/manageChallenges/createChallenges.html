@@ -3,10 +3,8 @@
 {% block content %}
 <link rel="stylesheet" href="/static/css/challenge.css">
 <main role="main">
-<div class="jumbotron">
-    <div class="container">
-        <h1 style="color: white;">Create new Challenges</h1>
-    </div>
+    <div class="p-5 bg-yellow-100 text-black text-center text-3xl rounded bg-opacity-90">
+        <h1 class="font-bold">Create Challenges</h1>
 </div>
 <div class="container">
 <div class="modal fade" id="dashboard-window" tabindex="-1" role="dialog">
@@ -34,12 +32,6 @@
 
                     </table>
                 </div>
-
-                <label for="challengeBadge">Badge</label>
-                <select name="badge" id="badge" multiple>
-                    <option value="badge1">Badge 1</option>
-                    <option value="badge2">Badge 1</option>
-                </select>
 
                 <input type="submit" value="Create Challenge" class="btn">
             </form>
