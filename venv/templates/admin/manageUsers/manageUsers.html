@@ -1,53 +1,60 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %} {% with messages =
+get_flashed_messages() %} {% if messages %} {% for message in messages %} {{
+message }} {% endfor %} {% endif %} {% endwith %}
 
-{% block content %}
-
-{% with messages = get_flashed_messages() %}
-{% if messages %}
-{% for message in messages %}
-    {{ message }}
-{% endfor %}
-{% endif %}
-{% endwith %}
- 
 <main role="main">
-    <div class="jumbotron">
-        <div class="container">
-            <h1 style="color: white;">Manage Users</h1>
-        </div>
-    </div>
-
-   
+  <div class="jumbotron">
     <div class="container">
-        
-    <div id="dashboard-sensor">
-<a href="/admin/manageUsers/createUser" class="btn btn-primary">Create User</a>
-<table class="table">
-<colgroup>
-    <col span="4" style="background-color:white">
-    <col style="background-color: white">
-</colgroup>
-<tr>
-    <th scope="col">Username</th>
-    <th scope="col">Name</th>
-    <th scope="col">Role</th>
-    <th scope="col" colspan="2">Actions</th>
-</tr>
-{% for users in userList %}
-<form method=POST>
-<tr>
-    <input type="hidden" name="_id" value= {{ users['_id'] }}>
-    <td> {{ users['username'] }}</td>
-    <td> {{ users['name'] }}</td>
-    <td> {{ users['role'] }}</td>
-    <td><button class="btn btn-success" type="submit" formaction="/admin/manageUsers/updateUser">Update</button>
-    <button class="btn btn-danger" type="submit" formaction="/admin/manageUsers/deleteUser">Delete</button>
-    </td>
-</tr>
-</form>
-{% endfor %}
-</table>
-</div>
-</div>
-</div>
-{% endblock %}
+      <h1 style="color: white">Manage Users</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="manageUsers">
+      <a href="/admin/manageUsers/createUser" class="btn btn-primary"
+        >Create User</a
+      >
+      <table class="table">
+        <colgroup>
+          <col span="4" style="background-color: white" />
+          <col style="background-color: white" />
+        </colgroup>
+        <tr>
+          <th>Username</th>
+          <th>Name</th>
+          <th>Role</th>
+          <th colspan="2">Actions</th>
+        </tr>
+        {% for users in userList %}
+        <form method="POST">
+          <tr>
+            <input type="hidden" name="_id" value= {{ users['_id'] }}>
+            <td>{{ users['username'] }}</td>
+            <td>{{ users['name'] }}</td>
+            <td>{{ users['role'] }}</td>
+            <td>
+              <button
+                class="btn btn-secondary"
+                type="submit"
+                formaction="/admin/manageUsers/updateUser"
+              >
+                Update
+              </button>
+            </td>
+            <td>
+              <button
+                class="btn btn-secondary"
+                type="submit"
+                formaction="/admin/manageUsers/deleteUser"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </form>
+        {% endfor %}
+      </table>
+      {% endblock %}
+    </div>
+  </div>
+</main>

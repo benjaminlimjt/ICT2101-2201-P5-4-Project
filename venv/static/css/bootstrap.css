@@ -4312,7 +4312,7 @@ input[type="button"].btn-block {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem 1rem;
+  padding: 0.5rem 1rem;
 }
 
 .navbar > .container,
@@ -4635,7 +4635,7 @@ input[type="button"].btn-block {
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: rgba(255, 255, 255, 0.5);
+  color: #f9fafb;
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,
@@ -5209,6 +5209,7 @@ a.badge-dark.focus {
 }
 
 .jumbotron {
+  margin-top: -5rem;
   padding: 2rem 1rem;
   margin-bottom: 2rem;
   background-color: #e9ecef;
@@ -5217,7 +5218,7 @@ a.badge-dark.focus {
 
 @media (min-width: 576px) {
   .jumbotron {
-    padding: 2rem 2rem;
+    padding: 4rem 2rem;
   }
 }
 
@@ -7700,7 +7701,7 @@ button.bg-dark:focus {
 }
 
 .fixed-top {
-  position: fixed;
+  /*position: fixed;*/
   top: 0;
   right: 0;
   left: 0;
