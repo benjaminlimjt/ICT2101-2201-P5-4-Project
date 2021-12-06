@@ -163,7 +163,6 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                             carFuturePosY += 1;
                             break;
                     };
-                    console.log("futureposxyhw",carFuturePosX,carFuturePosY);
                     if(checkValidCoordinates() == 1) {
                         virtualMapTable.rows[carPosY].cells[carPosX].appendChild(carTile);
                         moveCarUp();
@@ -230,8 +229,15 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
         (function(len){
             setTimeout(function(){
                 document.getElementById("runCodeButton").removeAttribute("disabled");
+                if (i == len) {
+                    alert("Sorry, all steps have been run but you have not reached target! Try again! :)");
+                    reset();
+                    return;
+                }
             }, 5000 * len);
         }(len));
     }
+
+    
 
 });
