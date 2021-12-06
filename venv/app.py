@@ -192,9 +192,11 @@ def viewCreateChallenges():
         flash(Challenge().createChallenge())
         return redirect('/admin/manageChallenges/createChallenges')
 
-@app.route('/xx', methods=['GET'])
-def xx():
-    return Challenge().insertChallenge()
+@app.route('/initialSetup', methods=['GET'])
+def initialStartup():
+    Challenge().insertChallenge()
+    User().insertUser()
+    return render_template('initialSetup.html')
 
 @app.route('/admin/manageChallenges/updateChallenges', methods=['GET'])
 # @admin_only

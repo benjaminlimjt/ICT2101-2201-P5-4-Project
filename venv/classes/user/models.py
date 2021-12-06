@@ -43,6 +43,22 @@ class User:
         session.clear()
         return redirect('/login')
 
+    def insertUser(self):
+        self._id = uuid.uuid4().hex
+        self.username = "admin"
+        self.password = pbkdf2_sha256.encrypt("admin")
+        self.name = "admin"
+        self.role = "admin"
+
+        if self.fetchByUsername(self.username):
+            return ({"error": "Username already in use"}), 400
+            
+        while self.fetchBy_id(self._id):
+            self._id = uuid.uuid4().hex
+
+        db.users.insert_one(self.toJSON())
+        return ({"success": "Successfully added user"}), 200
+
     def createUser(self):
         self._id = uuid.uuid4().hex
         self.username = request.form.get('username')
