@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<link rel="stylesheet" href="/static/css/challenge.css">
+
+<div class="challengeSuperContainer">
+    <div class="row">
+        <h3 class="col-md-2" style="display: inline-block">Challenge Name</h3>
+        <div class="col-md-2" id="challengeName">{{ challenge['challengeName'] }}</div>
+        <h3 class="col-md-3" style="display: inline-block">Challenge Description</h3>
+        <div class="col-md-5 " id="challengeDescription">{{ challenge['challengeDescription'] }}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-5 align-items-start">
+            <h3>Virtual Map</h3>
+            <div id="virtualMap_container" class="list-group">
+                <table class="virtualMap" id="virtualMap">
+                    {% for row in challenge['challengeData'] %}
+                        <tr>
+                            {% for cell in row %}
+                                {% if cell == 0 %}
+                                    <td class="mapTile"></td>
+                                {% elif cell == 1 %}
+                                    <td class="mapTile wallTile"><img class="tile wallTile" id="wallTileImage" src="/static/img/wall.png"></td>
+                                {% elif cell == 2 %}
+                                    <td class="mapTile" id="carTile"><img class="tile carTileImage" id="carTileImage" src="/static/img/car.png"></td>
+                                {% elif cell == 3 %}
+                                    <td class="mapTile targetTile" id="targetTile"><img class="tile targetTileImage" id="targetTileImage" src="/static/img/target.png"></td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+                <div id="vehicleInfoContainer">
+                    <h3>Vehicle Speed</h3>
+                    <div class="vehicleSpeed">
+                        <div class="vehicleSpeedBox">
+                            x m/s
+                        </div>
+                    </div>
+                    <h3>Obstacle Distance</h3>
+                    <div class="obstacleDistance">
+                        <div class="obstacleDistanceBox">
+                            x metres
+                        </div>
+                    </div>
+                </div>
+                <h3>Command History</h3>
+                <div class="commandHistory">
+                    <div id="commandHistoryBox" class="commandHistoryBox">
+
+                    </div>   
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 align-items-start">
+            <h3>Play blocks</h3>
+            <div id="sourceCode_container" class="list-group sourceCode_container flex-container">
+                <div class="list-group-item">Turn Left</div>
+                <div class="list-group-item">Turn Right</div>
+                <div class="list-group-item">Move Front</div>
+                <div class="list-group-item">Move Back</div>
+            </div>
+        </div>
+        <div class="col-md-4 align-items-start">
+            <div>
+                <h3 style="display: inline-block">Code Container</h3>
+                <button id="stopCodeButton" style="float: right"> Stop! </button>
+                <button id="runCodeButton" style="float: right"> Run! </button>
+            </div>
+            <div id="inputCode_container" class="list-group inputCode_container flex-container">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/jquery@3.4.1/dist/jquery.min.js" defer></script>
+<script src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js" defer></script>
+<script src="https://unpkg.com/bootstrap@4.4.1/dist/js/bootstrap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js" defer></script>
+
+<script type="text/javascript" defer>var challengeMap = "{{ challenge['challengeData']|safe }}"; </script>
+<script type="text/javascript" src="/static/js/challenge.js" defer></script>
+
+{% endblock %}

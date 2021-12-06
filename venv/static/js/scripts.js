@@ -94,6 +94,7 @@ document.getElementById("carBtnUp").addEventListener("mouseup", stopCar);
 document.getElementById("carBtnLeft").addEventListener("mouseup", stopCar);
 document.getElementById("carBtnRight").addEventListener("mouseup", stopCar);
 document.getElementById("carBtnDown").addEventListener("mouseup", stopCar);
+
 function moveCarUp() {
     $.ajax({
         url: "/freeDriving",
@@ -167,4 +168,19 @@ function stopCar() {
         }
     })
 }
-//Car Listeners end
+
+function sendCommandList(cmdList){
+    $.ajax({
+        url: "/freeDriving",
+        type: "POST",
+        data: JSON.stringify(cmdList),
+        contentType: "application/json",
+        success: function (resp) {
+            console.log(resp);
+        },
+        error: function (resp) {
+            console.log(resp);
+        }
+    })
+}
+//END CAR JS

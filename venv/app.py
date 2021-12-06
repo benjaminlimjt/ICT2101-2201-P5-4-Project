@@ -4,7 +4,10 @@ from classes.car.dataProcessor import Processor
 from flask import Flask, render_template, session, redirect, request, flash
 from functools import wraps
 from classes.user.models import User
+from classes.challenge.models import Challenge
+from classes.car.dataProcessor import Processor
 from topsecrets import SECRET_KEY
+from db import db
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
 
@@ -66,21 +69,21 @@ def login():
     if request.method == 'POST':
         return User().login()
 
-
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     return User().logout()
 
+@app.route('/freeDriving', methods=['GET'])
+def freeDriving():
+    return render_template('/freeDriving/freeDriving.html')
 
 @app.route('/freeDriving', methods=['POST'])
 def sendMovementCommand():
     return Processor().sendMovementCommand()
 
-
 @app.route('/freeDriving/getCarCommands', methods=['GET'])
 def getMovementCommand():
     return Processor().getMovementCommand()
-
 
 @app.route('/freeDriving/sensorData/<data>', methods=['GET', 'POST'])
 def updateSensorData(data):
@@ -88,17 +91,23 @@ def updateSensorData(data):
     return res + "Data from request = " + data
 
 
+# Challenge Routes
 @app.route('/challenges', methods=['GET'])
 def viewChallenges():
-    return render_template('/challenges/index.html')
+    challenges = db.challenges.find()
+    return render_template('/challenges/index.html', challenges=challenges)
 
+@app.route('/challenges/tutorial', methods=['GET', 'POST'])
+def viewTutorial():
+    challenge = db.challenges.find_one({'challengeID' : "0"})
+    return render_template('/challenges/tutorial.html', challenge=challenge)
 
-@app.route('/freeDriving', methods=['GET'])
-def freeDriving():
-    return render_template('/freeDriving/freeDriving.html')
+@app.route('/challenges/<id>', methods=['GET', 'POST'])
+def viewChallenge(id):
+    challenge = db.challenges.find_one({'challengeID': id})
+    return render_template('/challenges/challenge.html', challenge=challenge)
 
-
-# Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
+# Admin Specific Routes such as Manage Users, Manage Challenges, View Student Progress
 
 
 @app.route('/dashboard', methods=['GET'])
@@ -152,7 +161,6 @@ def updateUserFlow():
         flash(User().updateUser())
         return redirect('/admin/manageUsers')
 
-
 @app.route('/admin/manageUsers/deleteUser', methods=['GET', 'POST'])
 #@admin_only
 def deleteUser():
@@ -162,6 +170,7 @@ def deleteUser():
     if request.method == 'POST':
         flash(User().deleteUser())
         return redirect('/admin/manageUsers')
+
 
 
 # Manage Challenge
@@ -176,6 +185,9 @@ def viewManageChallenges():
 def viewCreateChallenges():
     return render_template('/admin/manageChallenges/createChallenges.html')
 
+@app.route('/xx', methods=['GET'])
+def xx():
+    return Challenge().insertChallenge()
 
 @app.route('/admin/manageChallenges/updateChallenges', methods=['GET'])
 # @admin_only
@@ -184,4 +196,4 @@ def viewUpdateChallenges():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0",debug = True)
