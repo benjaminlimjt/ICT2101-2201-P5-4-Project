@@ -3,18 +3,91 @@
 {% block content %}
 
 <link rel="stylesheet" href="/static/css/challenge.css">
+<div class="p-5 bg-yellow-100 text-black text-center text-3xl rounded bg-opacity-90 mt-10">
+    <div class="font-bold" id="challengeName">{{ challenge['challengeName'] }}</div>
+    <div class="font-semibold" id="challengeDescription">{{ challenge['challengeDescription'] }}</div>
+</div>
 
-<div class="challengeSuperContainer">
-    <div class="row">
-        <h3 class="col-md-2" style="display: inline-block">Challenge Name</h3>
-        <div class="col-md-2" id="challengeName">{{ challenge['challengeName'] }}</div>
-        <h3 class="col-md-3" style="display: inline-block">Challenge Description</h3>
-        <div class="col-md-5 " id="challengeDescription">{{ challenge['challengeDescription'] }}</div>
+
+<div class=" d-flex justify-content-center w-auto">
+    <div class="card rounded h-auto text-center bg-gray-200 bg-opacity-90 mt-10">
+        <div class="font-bold">Drag Commands to Code Container</div>
+        <hr />
+        <div >
+            <div id="sourceCode_container" class=" list-group m-2 ">
+                <div class="list-group-item">Turn Left</div>
+                <div class="list-group-item">Turn Right</div>
+                <div class="list-group-item">Move Front</div>
+                <div class="list-group-item">Move Back</div>
+            </div>
+
+        </div>
+        <div class="font-bold mt-2">Code Container</div>
+        <hr />
+        <div id="inputCode_container" class="m-2 list-group flex-container h-auto border-4 border-gray-500 border-double" style="min-height: 400px;">
+        </div>
+        <button id="runCodeButton"  class="bg-green-400 rounded-full py-2 px-6 my-1"> Run! </button>
+        <button id="stopCodeButton" class="bg-red-400 rounded-full py-2 px-6 my-1"> Stop! </button>
+
     </div>
+
+    <div class=" justify-content-center card rounded h-auto text-center w-6/12 bg-gray-200 bg-opacity-90 mt-10 block ">
+        <div id="virtual  Map_container" class="list-group" >
+        <table class="virtualMap" id="virtualMap">
+            {% for row in challenge['challengeData'] %}
+                <tr>
+                    {% for cell in row %}
+                        {% if cell == 0 %}
+                            <td class="mapTile"></td>
+                        {% elif cell == 1 %}
+                            <td class="mapTile wallTile"><img class="tile wallTile" id="wallTileImage" src="/static/img/wall.png"></td>
+                        {% elif cell == 2 %}
+                            <td class="mapTile" id="carTile"><img class="tile carTileImage" id="carTileImage" src="/static/img/car.png"></td>
+                        {% elif cell == 3 %}
+                            <td class="mapTile targetTile" id="targetTile"><img class="tile targetTileImage" id="targetTileImage" src="/static/img/target.png"></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+    </div>
+    <div id="carInfoContainer">
+        <div class="card rounded h-auto text-center  bg-gray-200 bg-opacity-90 mt-10">
+            <div class="font-bold">Car Data</div>
+            <hr />
+        <div class="d-flex space-x-3">
+            <div class="font-bold">Object Distance : </div>
+            <div class="font-semibold">
+                x cm
+            </div>
+        </div>
+        </div>
+        <div class="card rounded h-auto text-center bg-gray-200 bg-opacity-90 mt-4">
+            <div class="font-bold">Command History</div>
+            <hr />
+            <div class="commandHistory">
+                <div id="commandHistoryBox" class="commandHistoryBox">
+
+                </div>   
+            </div>
+        </div>
+        
+
+        </div>
+    </div>
+    
+
+</div>
+
+
+
+<!-- <div class="challengeSuperContainer">
     <div class="row">
         <div class="col-md-5 align-items-start">
             <h3>Virtual Map</h3>
-            <div id="virtualMap_container" class="list-group">
+            <div id="virtual  Map_container" class="list-group">
                 <table class="virtualMap" id="virtualMap">
                     {% for row in challenge['challengeData'] %}
                         <tr>
@@ -73,7 +146,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 
 <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.min.js" defer></script>
 <script src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js" defer></script>

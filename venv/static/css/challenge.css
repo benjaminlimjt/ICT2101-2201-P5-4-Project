@@ -1,45 +1,47 @@
 body {
-    margin: 0;
+  margin: 0;
 }
 
 .challengeSuperContainer {
-    padding-left: 5rem;
-    padding-top: 5rem;
+  padding-left: 5rem;
+  padding-top: 5rem;
 }
 
-
 .sourceCode_container {
-    border-style: solid;
-    background-color: #333;
-    padding: 1rem;
-    width: 15rem;
+  border-style: solid;
+  background-color: #333;
+  padding: 1rem;
+  width: 15rem;
 }
 
 .inputCode_container {
-    border-style: solid;
-    background-color: #333;
-    padding: 1rem;
+  border-style: solid;
+  background-color: #333;
+  padding: 1rem;
 }
 
 .virtualMap {
-    border-style: solid;
-    background-size: cover;
-    background-color: white; 
-    table-layout: fixed; 
-    width:40rem;
+  border-style: solid;
+  background-size: cover;
 }
 
 .mapTile {
-    height: 8rem;
-    width: 8rem;
-    text-align: center;
+  height: 8rem;
+  width: 8rem;
+  text-align: center;
 }
 
 .tile {
-    width: 100%;
-    display: block;
+  width: 100%;
+  display: block;
 }
 
 .red {
-    color: red;
+  color: red;
+}
+
+.tileImage {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
