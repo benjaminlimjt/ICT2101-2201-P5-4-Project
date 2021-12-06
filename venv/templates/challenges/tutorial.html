@@ -4,78 +4,84 @@
 
 <link rel="stylesheet" href="/static/css/challenge.css">
 <link rel="stylesheet" href="/static/node_modules/shepherd.js/dist/css/shepherd.css" />
-
-<div class="challengeSuperContainer">
-    <div class="row">
-        <h3 class="col-md-2" style="display: inline-block">Challenge Name</h3>
-        <div class="col-md-2" id="challengeName">{{ challenge['challengeName'] }}</div>
-        <h3 class="col-md-3" style="display: inline-block">Challenge Description</h3>
-        <div class="col-md-5 " id="challengeDescription">{{ challenge['challengeDescription'] }}</div>
-    </div>
-    <div class="row">
-        <div class="col-md-5 align-items-start">
-            <h3>Virtual Map</h3>
-            <div id="virtualMap_container" class="list-group">
-                <table class="virtualMap" id="virtualMap">
-                    {% for row in challenge['challengeData'] %}
-                        <tr>
-                            {% for cell in row %}
-                                {% if cell == 0 %}
-                                    <td class="mapTile"></td>
-                                {% elif cell == 1 %}
-                                    <td class="mapTile wallTile"><img class="tile wallTileImage" id="wallTileImage" src="/static/img/wall.png"></td>
-                                {% elif cell == 2 %}
-                                    <td class="mapTile" id="carTile"><img class="tile carTileImage" id="carTileImage" src="/static/img/car.png"></td>
-                                {% elif cell == 3 %}
-                                    <td class="mapTile targetTile" id="targetTile"><img class="tile targetTileImage" id="targetTileImage" src="/static/img/target.png"></td>
-                                {% endif %}
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
-                </table>
-
-                <div id="carInfoContainer" class="carInfoContainer">
-                    <h3>car Speed</h3>
-                    <div class="carSpeed">
-                        <div class="carSpeedBox">
-                            x m/s
-                        </div>
-                    </div>
-                    <h3>Obstacle Distance</h3>
-                    <div class="obstacleDistance">
-                        <div class="obstacleDistanceBox">
-                            x metres
-                        </div>
-                    </div>
-                </div>
-                <h3>Command History</h3>
-                <div class="commandHistory">
-                    <div id="commandHistoryBox" class="commandHistoryBox">
-
-                    </div>   
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2 align-items-start">
-            <h3>Play blocks</h3>
-            <div id="sourceCode_container" class="list-group sourceCode_container flex-container">
-                <div class="list-group-item">Turn Left</div>
-                <div class="list-group-item">Turn Right</div>
-                <div class="list-group-item">Move Front</div>
-                <div class="list-group-item">Move Back</div>
-            </div>
-        </div>
-        <div class="col-md-4 align-items-start">
-            <div>
-                <h3 style="display: inline-block">Code Container</h3>
-                <button id="stopCodeButton" style="float: right"> Stop! </button>
-                <button id="runCodeButton" style="float: right"> Run! </button>
-            </div>
-            <div id="inputCode_container" class="list-group inputCode_container flex-container">
-            </div>
-        </div>
-    </div>
+<div class="p-5 bg-yellow-100 text-black text-center text-3xl rounded bg-opacity-90 mt-10">
+    <div class="font-bold" id="challengeName">{{ challenge['challengeName'] }}</div>
+    <div class="font-semibold" id="challengeDescription">{{ challenge['challengeDescription'] }}</div>
 </div>
+
+
+<div class=" d-flex justify-content-center w-auto">
+    <div class="card rounded h-auto text-center bg-gray-200 bg-opacity-90 mt-10  ">
+        <div class="font-bold">Drag Commands to Code Container</div>
+        <hr />
+        <div >
+            <div id="sourceCode_container" class="list-group m-2 sourceCode_container ">
+                <div class="list-group-item bg-blue-200 my-1">Turn Left</div>
+                <div class="list-group-item bg-purple-200  my-1">Turn Right</div>
+                <div class="list-group-item bg-green-200  my-1">Move Front</div>
+                <div class="list-group-item bg-red-200  my-1">Move Back</div>
+            </div>
+
+        </div>
+        <div class="font-bold mt-2" >Code Container</div>
+        <hr />
+        <div id="inputCode_container" class="inputCode_container m-2 list-group flex-container h-auto border-4 border-gray-500 border-double" style="min-height: 400px;">
+        </div>
+        <button id="runCodeButton"  class=" runCodeButton bg-green-400 rounded-full py-2 px-6 my-1"> Run! </button>
+        <button id="stopCodeButton" class="stopCodeButton bg-red-400 rounded-full py-2 px-6 my-1"> Stop! </button>
+
+    </div>
+
+    <div class=" justify-content-center card rounded h-auto text-center w-6/12 bg-gray-200 bg-opacity-90 mt-10 block ">
+        <div id="virtual  Map_container" class="list-group" >
+        <table class="virtualMap" id="virtualMap">
+            {% for row in challenge['challengeData'] %}
+                <tr>
+                    {% for cell in row %}
+                        {% if cell == 0 %}
+                            <td class="mapTile"></td>
+                        {% elif cell == 1 %}
+                            <td class="mapTile wallTile"><img class="tile wallTile" id="wallTileImage" src="/static/img/wall.png"></td>
+                        {% elif cell == 2 %}
+                            <td class="mapTile" id="carTile"><img class="tile carTileImage" id="carTileImage" src="/static/img/car.png"></td>
+                        {% elif cell == 3 %}
+                            <td class="mapTile targetTile" id="targetTile"><img class="tile targetTileImage" id="targetTileImage" src="/static/img/target.png"></td>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+    </div>
+    <div id="carInfoContainer">
+        <div class="card rounded h-auto text-center  bg-gray-200 bg-opacity-90 mt-10">
+            <div class="font-bold carInfoContainer">Car Data</div>
+            <hr />
+        <div class="d-flex space-x-3">
+            <div class="font-bold">Object Distance : </div>
+            <div class="font-semibold">
+                x cm
+            </div>
+        </div>
+        </div>
+        <div class="card rounded h-auto text-center bg-gray-200 bg-opacity-90 mt-4">
+            <div class="font-bold">Command History</div>
+            <hr />
+            <div class="commandHistory">
+                <div id="commandHistoryBox" class="commandHistoryBox">
+
+                </div>   
+            </div>
+        </div>
+        
+
+        </div>
+    </div>
+    
+
+</div>
+
 
 <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.min.js" defer></script>
 <script src="https://unpkg.com/popper.js@1.16.0/dist/umd/popper.min.js" defer></script>
@@ -121,7 +127,7 @@
         text: 'This is the Play Blocks container, where you can drag and drop the code blocks into the Code Container.',
         attachTo: {
             element: '.sourceCode_container',
-            on: 'bottom'
+            on: 'right'
         },
         buttons: [
             {
@@ -146,7 +152,7 @@
         text: 'This is the Code Container. Drag the blocks from the Play Blocks container to move the car!',
         attachTo: {
             element: '.inputCode_container',
-            on: 'bottom'
+            on: 'right'
         },
         buttons: [
             {
@@ -164,6 +170,58 @@
             }
         ],
         id: 'inputCodeContainer'
+        });
+
+       
+
+        tour.addStep({
+        title: 'Run Button',
+        text: 'Press this button to run car!',
+        attachTo: {
+            element: '.runCodeButton',
+            on: 'right'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'runCodeButton'
+        });
+
+        tour.addStep({
+        title: 'Stop Button',
+        text: 'Press this button to stop car!',
+        attachTo: {
+            element: '.stopCodeButton',
+            on: 'right'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'stopCodeButton'
         });
 
         tour.addStep({
@@ -192,36 +250,11 @@
         });
 
         tour.addStep({
-        title: 'Command History',
-        text: 'This is the Command History. Commands executed previously can be seen here!',
-        attachTo: {
-            element: '.commandHistoryBox',
-            on: 'left'
-        },
-        buttons: [
-            {
-            action() {
-                return this.back();
-            },
-            classes: 'shepherd-button-secondary',
-            text: 'Back'
-            },
-            {
-            action() {
-                return this.next();
-            },
-            text: 'Next'
-            }
-        ],
-        id: 'virtualMap'
-        });
-
-        tour.addStep({
-        title: 'Car Info',
+        title: 'Car Data',
         text: 'This is where you can see information of the car!',
         attachTo: {
             element: '.carInfoContainer',
-            on: 'right'
+            on: 'left'
         },
         buttons: [
             {
@@ -241,12 +274,13 @@
         id: 'carInfo'
         });
 
+
         tour.addStep({
-        title: 'Car Speed',
-        text: 'This is the Car Speed!',
+        title: 'Command History',
+        text: 'This is the Command History. Commands executed previously can be seen here!',
         attachTo: {
-            element: '.carSpeedBox',
-            on: 'right'
+            element: '.commandHistoryBox',
+            on: 'left'
         },
         buttons: [
             {
@@ -260,19 +294,16 @@
             action() {
                 return this.next();
             },
+
             text: 'Next'
             }
         ],
-        id: 'carSpeed'
+        id: 'virtualMap'
         });
 
         tour.addStep({
-        title: 'Obstacle Distance',
-        text: 'This is the Obstacle Distance!',
-        attachTo: {
-            element: '.obstacleDistanceBox',
-            on: 'right'
-        },
+        title: 'The Goal of the Game',
+        text: 'Drag the commands in the code container to move the car and pick up Pusheen the cat! Good Luck!',
         buttons: [
             {
             action() {
@@ -285,12 +316,15 @@
             action() {
                 return this.next();
             },
-            text: 'Next'
+            text: 'Finish Tutorial'
             }
         ],
-        id: 'obstacleDistance'
+        id: 'goal'
         });
 
+        
+
+        
 
     tour.start();
 

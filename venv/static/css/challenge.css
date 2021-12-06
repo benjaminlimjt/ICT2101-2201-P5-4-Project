@@ -7,13 +7,6 @@ body {
   padding-top: 5rem;
 }
 
-.sourceCode_container {
-  border-style: solid;
-  background-color: #333;
-  padding: 1rem;
-  width: 15rem;
-}
-
 .inputCode_container {
   border-style: solid;
   background-color: #333;
