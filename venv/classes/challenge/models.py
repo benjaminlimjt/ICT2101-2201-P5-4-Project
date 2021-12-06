@@ -65,5 +65,10 @@ class Challenge:
         self.challengeDescription = parsedData['challengeDescription'][0]
         self.challengeData = json.loads(request.form['challengeData'])
 
-        db.challenges.insert_one(self.toJSON())
-        return "Successfully created challenge."
+        if not db.challenges.find_one({'challengeID': self.challengeID}):
+            db.challenges.insert_one(self.toJSON())
+            return "Successfully created challenge.", 200
+        
+        else:
+            return "Failed to create challenge.", 400
+        
