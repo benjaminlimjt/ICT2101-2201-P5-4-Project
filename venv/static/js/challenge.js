@@ -116,7 +116,6 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
 
     var carTile = document.getElementById("carTileImage");
     var codeList = document.getElementById("inputCode_container").querySelectorAll(".list-group-item");
-    
     // Disable Run Button
     document.getElementById("runCodeButton").setAttribute("disabled", true);
 
@@ -144,6 +143,10 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                 if (currentCarDegree > 360) {
                     currentCarDegree = 0;
                 }
+
+                if (currentCarDegree < 0) {
+                    currentCarDegree += 360;
+                }
                 if(codeList[i].textContent == "Move Front") {
                     var direction = Math.abs((currentCarDegree / 90) % 4);
                     switch(direction) {
@@ -152,7 +155,7 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                             break;
                         
                         case 1:
-                            carFuturePosY -= 1;
+                            carFuturePosY += 1;
                             break;
                         
                         case 2:
@@ -160,7 +163,7 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                             break;
                         
                         case 3:
-                            carFuturePosY += 1;
+                            carFuturePosY -= 1;
                             break;
                     };
                     if(checkValidCoordinates() == 1) {
@@ -173,7 +176,6 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                         return;
                     }
                     else {
-                        console.log(checkValidCoordinates());
                         alert("Failed the puzzle.");
                         reset();
                         return;
@@ -188,7 +190,7 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                             break;
                         
                         case 1:
-                            carFuturePosY += 1;
+                            carFuturePosY -= 1;
                             break;
                         
                         case 2:
@@ -196,7 +198,7 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                             break;
                         
                         case 3:
-                            carFuturePosY -= 1;
+                            carFuturePosY += 1;
                             break;
                     }
                     if(checkValidCoordinates() == 1) {

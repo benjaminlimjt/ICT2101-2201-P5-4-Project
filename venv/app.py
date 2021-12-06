@@ -119,7 +119,7 @@ def viewAdminDashboard():
     return render_template('/admin/dashboard/index.html')
 
 
-# Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
+# Admin Specific Routes such as Manage Users, Manage Challenges, View Student Progress
 
 # Manage Users
 @app.route('/admin/manageUsers', methods=['GET'])
@@ -177,10 +177,15 @@ def viewManageChallenges():
     return render_template('/admin/manageChallenges/manageChallenges.html')
 
 
-@app.route('/admin/manageChallenges/createChallenges', methods=['GET'])
+@app.route('/admin/manageChallenges/createChallenges', methods=['GET', 'POST'])
 # @admin_only
 def viewCreateChallenges():
-    return render_template('/admin/manageChallenges/createChallenges.html')
+
+    if request.method == 'GET':
+        return render_template('/admin/manageChallenges/createChallenges.html')
+    
+    if request.method == 'POST':
+        return Challenge().createChallenge()
 
 @app.route('/xx', methods=['GET'])
 def xx():
