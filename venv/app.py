@@ -90,7 +90,7 @@ def getSensorData():
 @app.route('/freeDriving/sensorData/<data>', methods=['GET', 'POST'])
 def updateSensorData(data):
     res = Processor().updateSensorData(data)
-    return res
+    return res + "Data from request = " + data
 
 
 # Challenge Routes
@@ -208,7 +208,8 @@ def viewProfile():
     userList = db.users.find()
     return render_template('/profile.html', userList=userList)
 
+
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0",debug = True)
-
-

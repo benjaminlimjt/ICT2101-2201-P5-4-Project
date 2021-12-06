@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request, session, redirect
 import json
 from bson.json_util import dumps
-
 from passlib.hash import pbkdf2_sha256
 import uuid
 from db import db
