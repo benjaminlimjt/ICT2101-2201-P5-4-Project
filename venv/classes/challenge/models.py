@@ -38,8 +38,6 @@ class Challenge:
         if not db.challenges.find_one({'challengeID': "0"}):
             db.challenges.insert_one(self.toJSON())
 
-        
-
         self._id = uuid.uuid4().hex
         self.challengeID = "1"
         self.challengeName = "Save Pusheen!"
@@ -54,7 +52,6 @@ class Challenge:
 
         if not db.challenges.find_one({'challengeID': "1"}):
             db.challenges.insert_one(self.toJSON())
-
 
         return "Successfully added challenge"
 
