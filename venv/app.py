@@ -170,8 +170,6 @@ def deleteUser():
         flash(User().deleteUser())
         return redirect('/admin/manageUsers')
 
-
-
 # Manage Challenge
 @app.route('/admin/manageChallenges')
 # @admin_only

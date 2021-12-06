@@ -33,10 +33,10 @@
                         </tr>
                     {% endfor %}
                 </table>
-                <div id="vehicleInfoContainer">
-                    <h3>Vehicle Speed</h3>
-                    <div class="vehicleSpeed">
-                        <div class="vehicleSpeedBox">
+                <div id="carInfoContainer" class="carInfoContainer">
+                    <h3>car Speed</h3>
+                    <div class="carSpeed">
+                        <div class="carSpeedBox">
                             x m/s
                         </div>
                     </div>
@@ -96,11 +96,7 @@
 
         tour.addStep({
         title: 'The Challenge Page',
-        text: 'Welcome to the challenge Page!',
-        attachTo: {
-            element: '.hero-example',
-            on: 'bottom'
-        },
+        text: 'Welcome to the Challenge Page!',
         buttons: [
             {
             action() {
@@ -120,11 +116,61 @@
         });
 
         tour.addStep({
+        title: 'Play Blocks Container',
+        text: 'This is the Play Blocks container, where you can drag and drop the code blocks into the Code Container.',
+        attachTo: {
+            element: '.sourceCode_container',
+            on: 'bottom'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'sourceCodeContainer'
+        });
+
+        tour.addStep({
+        title: 'Code Container',
+        text: 'This is the Code Container. Drag the blocks from the Play Blocks container to move the car!',
+        attachTo: {
+            element: '.inputCode_container',
+            on: 'bottom'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'inputCodeContainer'
+        });
+
+        tour.addStep({
         title: 'Virtual Map',
-        text: 'This is the Virtual Map, where changes will be reflected.',
+        text: 'This is the Virtual Map. Changes to the car are reflected here!',
         attachTo: {
             element: '.virtualMap',
-            on: 'bottom'
+            on: 'right'
         },
         buttons: [
             {
@@ -143,6 +189,107 @@
         ],
         id: 'virtualMap'
         });
+
+        tour.addStep({
+        title: 'Command History',
+        text: 'This is the Command History. Commands executed previously can be seen here!',
+        attachTo: {
+            element: '.commandHistoryBox',
+            on: 'left'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'virtualMap'
+        });
+
+        tour.addStep({
+        title: 'Car Info',
+        text: 'This is where you can see information of the car!',
+        attachTo: {
+            element: '.carInfoContainer',
+            on: 'right'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'carInfo'
+        });
+
+        tour.addStep({
+        title: 'Car Speed',
+        text: 'This is the Car Speed!',
+        attachTo: {
+            element: '.carSpeedBox',
+            on: 'right'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'carSpeed'
+        });
+
+        tour.addStep({
+        title: 'Obstacle Distance',
+        text: 'This is the Obstacle Distance!',
+        attachTo: {
+            element: '.obstacleDistanceBox',
+            on: 'right'
+        },
+        buttons: [
+            {
+            action() {
+                return this.back();
+            },
+            classes: 'shepherd-button-secondary',
+            text: 'Back'
+            },
+            {
+            action() {
+                return this.next();
+            },
+            text: 'Next'
+            }
+        ],
+        id: 'obstacleDistance'
+        });
+
 
     tour.start();
 
