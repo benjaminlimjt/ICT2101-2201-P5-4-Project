@@ -1,14 +1,12 @@
 from flask import Flask, jsonify, request, session, redirect
 import json
 from bson.json_util import dumps
-
 from passlib.hash import pbkdf2_sha256
 import uuid
 from db import db
 
 class Processor:
     def sendMovementCommand(self):
-        
         # Create a data object
         data ={
             "_id":uuid.uuid4().hex,
@@ -18,7 +16,7 @@ class Processor:
         db.create_collection("carMovement")
         if db.carMovement.insert_one(data):
             print("COMMAND update=",request.get_json()); 
-            return ({"success": "Successfully sent command"}), 200
+            return "Successfully sent command"
         return "Processor.sendCommand failed"
     def getMovementCommand(self):
         cursor = db.carMovement.find()
@@ -35,7 +33,7 @@ class Processor:
         db.carSensorData.drop()
         db.create_collection("carSensorData")
         if db.carSensorData.insert_one(data):
-             return "Successfully inserted Sensor Data. \n"
+             return "Successfully inserted Sensor Data."
         return "Processor.updateSensorData failed"
     def getSensorData(self):
         cursor = db.carSensorData.find()
