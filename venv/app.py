@@ -5,9 +5,6 @@ from flask import Flask, render_template, session, redirect, request, flash
 from functools import wraps
 from classes.user.models import User
 from classes.challenge.models import Challenge
-from classes.car.dataProcessor import Processor
-from topsecrets import SECRET_KEY
-from db import db
 app = Flask(__name__)
 app.secret_key = SECRET_KEY
 
@@ -54,7 +51,7 @@ def admin_only(f):
 @app.route('/')
 @login_required
 def home():
-    return render_template('/dashboard/index.html')
+    return render_template('home.html')
 
 # Generic Routes such as: Login, Dashboard,
 
@@ -69,24 +66,31 @@ def login():
     if request.method == 'POST':
         return User().login()
 
+
 @app.route('/logout', methods=['GET', 'POST'])
 def logout():
     return User().logout()
+
 
 @app.route('/freeDriving', methods=['GET'])
 def freeDriving():
     return render_template('/freeDriving/freeDriving.html')
 
+
 @app.route('/freeDriving', methods=['POST'])
 def sendMovementCommand():
     return Processor().sendMovementCommand()
 
+
 @app.route('/freeDriving/getCarCommands', methods=['GET'])
 def getMovementCommand():
     return Processor().getMovementCommand()
+
+
 @app.route('/freeDriving/getSensorData', methods=['GET'])
 def getSensorData():
     return Processor().getSensorData()
+
 
 @app.route('/freeDriving/sensorData/<data>', methods=['GET', 'POST'])
 def updateSensorData(data):
@@ -100,10 +104,12 @@ def viewChallenges():
     challenges = db.challenges.find()
     return render_template('/challenges/index.html', challenges=challenges)
 
+
 @app.route('/tutorial', methods=['GET', 'POST'])
 def viewTutorial():
-    challenge = db.challenges.find_one({'challengeID' : "0"})
+    challenge = db.challenges.find_one({'challengeID': "0"})
     return render_template('/challenges/tutorial.html', challenge=challenge)
+
 
 @app.route('/challenges/<id>', methods=['GET', 'POST'])
 def viewChallenge(id):
@@ -127,14 +133,14 @@ def viewAdminDashboard():
 
 # Manage Users
 @app.route('/admin/manageUsers', methods=['GET'])
-#@admin_only
+# @admin_only
 def manageUsers():
     userList = db.users.find()
     return render_template('/admin/manageUsers/manageUsers.html', userList=userList)
 
 
 @app.route('/admin/manageUsers/createUser', methods=['GET', 'POST'])
-#@admin_only
+# @admin_only
 def createUser():
     if request.method == 'GET':
         return render_template('/admin/manageUsers/createUser.html')
@@ -144,7 +150,7 @@ def createUser():
 
 
 @app.route('/admin/manageUsers/updateUser', methods=['GET', 'POST'])
-#@admin_only
+# @admin_only
 def updateUser():
     if request.method == 'GET':
         return redirect('/')
@@ -155,7 +161,7 @@ def updateUser():
 
 
 @app.route('/admin/manageUsers/updateUserFlow', methods=['GET', 'POST'])
-#@admin_only
+# @admin_only
 def updateUserFlow():
     if request.method == 'GET':
         return redirect('/')
@@ -164,8 +170,9 @@ def updateUserFlow():
         flash(User().updateUser())
         return redirect('/admin/manageUsers')
 
+
 @app.route('/admin/manageUsers/deleteUser', methods=['GET', 'POST'])
-#@admin_only
+# @admin_only
 def deleteUser():
     if request.method == 'GET':
         return redirect('/')
@@ -175,6 +182,8 @@ def deleteUser():
         return redirect('/admin/manageUsers')
 
 # Manage Challenge
+
+
 @app.route('/admin/manageChallenges')
 # @admin_only
 def viewManageChallenges():
@@ -187,7 +196,7 @@ def viewCreateChallenges():
 
     if request.method == 'GET':
         return render_template('/admin/manageChallenges/createChallenges.html')
-    
+
     if request.method == 'POST':
         flash(Challenge().createChallenge())
         return redirect('/admin/manageChallenges/createChallenges')
@@ -204,7 +213,7 @@ def viewUpdateChallenges():
     return render_template('/admin/manageChallenges/updateChallenges.html')
 
 
-# Profile Page 
+# Profile Page
 @app.route('/profile')
 # @logged_in
 def viewProfile():
@@ -212,7 +221,5 @@ def viewProfile():
     return render_template('/profile.html', userList=userList)
 
 
-
-
 if __name__ == '__main__':
-    app.run(host="0.0.0.0",debug = True)
+    app.run(host="0.0.0.0", debug=True)
