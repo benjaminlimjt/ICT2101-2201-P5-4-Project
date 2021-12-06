@@ -5,7 +5,6 @@ from flask import Flask, render_template, session, redirect, request, flash
 from functools import wraps
 from classes.user.models import User
 from classes.challenge.models import Challenge
-from classes.car.dataProcessor import Processor
 from topsecrets import SECRET_KEY
 from db import db
 app = Flask(__name__)
@@ -91,7 +90,7 @@ def getSensorData():
 @app.route('/freeDriving/sensorData/<data>', methods=['GET', 'POST'])
 def updateSensorData(data):
     res = Processor().updateSensorData(data)
-    return res + "Data from request = " + data
+    return res
 
 
 # Challenge Routes
@@ -209,8 +208,7 @@ def viewProfile():
     userList = db.users.find()
     return render_template('/profile.html', userList=userList)
 
-
-
-
 if __name__ == '__main__':
     app.run(host="0.0.0.0",debug = True)
+
+
