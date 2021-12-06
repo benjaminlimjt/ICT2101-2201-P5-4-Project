@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block content %}
+
+<main role="main">
+  <div class="jumbotron">
+    <div class="container">
+      <h1 style="color: white">Update User</h1>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="card-wrapper">
+      <div class="card">
+        <h1 class="center">Update User</h1>
+
+        <form
+          name="updateUser_form"
+          action="/admin/manageUsers/updateUserFlow"
+          id="updateUser_form"
+          method="post"
+        >
+          <input type="hidden" name="_id" value={{ user['_id'] }} required>
+          <label for="username">Username</label>
+          <input type="text" name="username" value={{ user['username'] }}
+          class="field" required>
+
+          <label for="password">Password</label>
+          <input type="password" name="password" class="field" required />
+
+          <label for="name">Name</label>
+          <input type="text" name="name" value={{ user['name'] }} class="field"
+          required>
+
+          <label for="role">Role</label>
+          <select name="role" id="role">
+            <option value="admin">Admin</option>
+            <option value="student">Student</option>
+          </select>
+
+          <p class="success success-hidden"></p>
+
+          <p class="error error-hidden"></p>
+
+          <input type="submit" value="Save Changes" class="btn btn-primary" />
+        </form>
+      </div>
+    </div>
+
+    {% endblock %}
+  </div>
+</main>

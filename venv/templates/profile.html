@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block content %} 
+    {% if session['user']['role'] == 'admin' %}
+     <div class="card-wrapper">
+
+    <div class="card">
+
+      <h1 class="center">Dashboard</h1>
+      <p class="center">You are currently logged in as Student.</p>
+
+    </div>
+
+    <div class="card">
+
+      <h2 class="center">Your Info</h2>
+
+      <p>
+        <strong>ID:</strong> {{ session['user']['_id'] }}
+    
+      </p>  
+      <p><strong>Username:</strong> {{ session['user']['username'] }}</p>  
+      <p>
+ <strong>Name:</strong> {{ session['user']['name'] }}
+      </p>
+       <p>
+ <strong>Role:</strong> {{ session['user']['role'] }}
+       </p>
+       
+    
+    </div>
+    
+  
+  </div>
+    <div class="card-wrapper">
+         <div class="card">
+
+      <h1 class="center">Your achievements </h1>
+     
+
+    </div>
+    </div>
+    {% endif %} {% endblock %}
+  </div>
+</div>

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class=" d-flex justify-content-center w-auto">
+<div class=" justify-content-center card rounded h-auto text-center w-6/12 bg-gray-200 bg-opacity-90 mt-10 block ">
+  <p class="text-4xl font-bold py-2 ">Welcome to Guido!</p>
+
+  <hr/>
+  <div class=" flex justify-content-center ">
+  <img class="bg-gray-500 my-2 rounded-full h-64" src="/static/img/Guido.png"/>
+</div>
+  <div class="flex justify-content-center space-x-3 ">
+  <a href="/tutorial">
+  <div class="bg-green-300 py-2 px-6 my-2 text-xl rounded-full py-3 px-6 ">
+  <button class="font-semibold ">How To Play</button>
+  </div>
+</a>
+  <a href="/challenges">
+  <div  class="bg-yellow-300 py-2 px-6 my-2  text-xl rounded-full py-3 px-6 " >
+    <button class="font-semibold">Challenges</button>
+    </div>
+  </a>
+    <a href="/freeDriving"> 
+      <div  class="bg-blue-300 py-2 px-6 my-2  text-xl rounded-full py-3 px-6 " >
+        <button class="font-semibold">Free Driving</button>
+        </div>
+      </a>
+    </div>
+
+</div>
+</div>
+{% endblock %}

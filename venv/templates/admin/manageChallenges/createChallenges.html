@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="/static/css/challenge.css">
+<main role="main">
+    <div class="p-5 bg-yellow-100 text-black text-center text-3xl rounded bg-opacity-90">
+        <h1 class="font-bold">Create Challenges</h1>
+</div>
+<div class="container">
+<div class="modal fade" id="dashboard-window" tabindex="-1" role="dialog">
+</div>
+
+    <div class="card-wrapper">
+
+        <div class="card">
+
+            <form name="createChallenge_form" method="post">
+
+                <label for="challengeID">Challenge ID</label>
+                <input type="number" name="challengeID" class="field" required>
+
+
+                <label for="challengeName">Challenge Name</label>
+                <input type="text" name="challengeName" class="field" required>
+
+                <label for="challengeDescription">Description</label>
+                <textarea type="challengeDescription" name="challengeDescription" class="field" required></textarea>
+
+                <label for="virtualMap">Virtual Map</label>
+                <div class="virtualMap_container" style="border-style: solid">
+                    <table id="virtualMap">
+
+                    </table>
+                </div>
+
+                <input type="submit" value="Create Challenge" class="btn">
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="/static/js/createChallenge.js" defer></script>
+</main>
+{% endblock %}

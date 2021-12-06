@@ -1,28 +1,26 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block content %}
 
-{% block content %}
+<style>
+  .navbar {
+    display: none;
+  }
+</style>
+<div class="card-wrapper">
+  <div class="card">
+    <h1 class="center">Login</h1>
 
-    <div class="card-wrapper">
+    <form name="login_form" id="login_form" method="post">
+      <label for="username">Username</label>
+      <input type="text" name="username" class="field" required />
 
-        <div class="card">
+      <label for="password">Password</label>
+      <input type="password" name="password" class="field" required />
 
-            <h1 class="center">Login</h1>
+      <p class="error error--hidden"></p>
 
-            <form name="createUser_form" method="post">
-
-                <label for="username">Username</label>
-                <input type="text" name="username" class="field" required>
-
-                <label for="password">Password</label>
-                <input type="password" name="password" class="field" required>
-
-                <p class="error error--hidden">
-                </p>
-
-                <input type="submit" value="Login" class="btn">
-            </form>
-        </div>
-
-    </div>
+      <input type="submit" value="Login" class="btn" />
+    </form>
+  </div>
+</div>
 
 {% endblock %}

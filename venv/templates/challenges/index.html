@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<main role="main">
+
+    <div class="p-5 bg-yellow-100 text-black text-center text-3xl rounded bg-opacity-90">
+            <h1 class="font-bold">Challenges</h1>
+    </div>
+
+    <div class="modal fade" id="challenge-window" tabindex="-1" role="dialog">
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div id="challenges-board">
+           
+
+            <div id="-1807658801-row" class="pt-5">
+                <div class="category-header col-md-12 mb-3">
+                    <h3>Easy Challenge</h3>
+                </div>
+                <div class="category-challenges col-md-12">
+                    <div class="challenges-row col-md-12">
+                        {% for challenge in challenges %}
+                            {% if challenge['challengeID'] != "0" %}
+                                <div id="-1047475930" class="col-md-3 d-inline-block">
+                                    <a href="/challenges/{{ challenge['challengeID'] }}"><button class="btn btn-dark challenge-button w-100 text-truncate pt-3 pb-3 mb-2" value="3">
+                                        <p>{{ challenge['challengeName'] }}</p><span>10</span>
+                                    </button>
+                                    </a>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</main>
+
+{% endblock %}
