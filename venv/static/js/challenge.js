@@ -75,7 +75,19 @@ function reset() {
 }
 
 document.getElementById("stopCodeButton").addEventListener("click", reset);
-
+function getSensorDataDB(){
+    $.ajax({
+        url: "/freeDriving/getSensorData",
+        type: "GET",
+        success: function (resp) {
+            document.getElementById("objDistVal").innerHTML = resp;
+            console.log("SENSORDATA FRONTEND CHANGED");
+        },
+        error: function (resp) {
+            console.log("SENSORDATA AJAX FAILED:",resp);
+        }
+    })
+}
 function checkValidCoordinates() {
     if (carFuturePosX == -1) {
         carFuturePosX = 0;
@@ -121,11 +133,13 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
 
     var commandHistoryBox = document.getElementById("commandHistoryBox");
     commandHistoryBox.innerHTML = "";
-
+    var Delay = 7000;
         // Main Timer to loop through input code
     for (var i = 0, len = codeList.length; i < len; i++) {
         (function(i){
             setTimeout(function(){
+                 //update sensorData
+                getSensorDataDB();
                 // Highlights the "currently" parsing code
                 codeList[i].classList.add('red')
                 commandHistoryBox.innerHTML += codeList[i].textContent + "<br>";
@@ -217,14 +231,14 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                     }
                 }
                 $('.carTileImage').css('-webkit-transform', "rotate("+currentCarDegree+"deg)");
-             }, 5000 * i); 
+             }, Delay * i); 
         }(i));
-
+       
         // Secondary Timer to remove "active" code
         (function(i){
             setTimeout(function(){
                 codeList[i].classList.remove('red')
-            }, 5000 + (5000 * i));
+            }, Delay + (Delay * i));
         }(i));
 
         // Final timer to enable run button
@@ -236,7 +250,7 @@ document.getElementById("runCodeButton").addEventListener("click", function() {
                     reset();
                     return;
                 }
-            }, 5000 * len);
+            }, Delay * len);
         }(len));
     }
 
