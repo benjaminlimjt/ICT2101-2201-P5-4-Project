@@ -45,6 +45,15 @@
       <hr class="d-sm-flex d-md-flex d-lg-none" />
 
       <ul class="navbar-nav ml-md-auto d-block d-sm-flex d-md-flex">
+        {% if session['user']['role'] == 'admin' %}
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/manageUsers">
+            <span class="d-sm-block d-md-none d-lg-block">
+              <i class="fas fa-user-lock pr-1"></i>Admin Panel
+            </span>
+          </a>
+        </li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link" href="/profile">
             <span
