@@ -100,18 +100,21 @@ def updateSensorData(data):
 
 # Challenge Routes
 @app.route('/challenges', methods=['GET'])
+@login_required
 def viewChallenges():
     challenges = db.challenges.find()
     return render_template('/challenges/index.html', challenges=challenges)
 
 
 @app.route('/tutorial', methods=['GET', 'POST'])
+@login_required
 def viewTutorial():
     challenge = db.challenges.find_one({'challengeID': "0"})
     return render_template('/challenges/tutorial.html', challenge=challenge)
 
 
 @app.route('/challenges/<id>', methods=['GET', 'POST'])
+@login_required
 def viewChallenge(id):
     challenge = db.challenges.find_one({'challengeID': id})
     return render_template('/challenges/challenge.html', challenge=challenge)
@@ -120,6 +123,7 @@ def viewChallenge(id):
 
 
 @app.route('/dashboard', methods=['GET'])
+@login_required
 def viewDashboard():
     return render_template('/dashboard/index.html')
 
@@ -132,6 +136,7 @@ def viewManageUsers():
     return render_template('/admin/manageUsers/manageUsers.html')
 
 @app.route('/admin/dashboard', methods=['GET'])
+@admin_only
 def viewAdminDashboard():
     return render_template('/admin/dashboard/index.html')
 
@@ -140,14 +145,14 @@ def viewAdminDashboard():
 
 # Manage Users
 @app.route('/admin/manageUsers', methods=['GET'])
-# @admin_only
+@admin_only
 def manageUsers():
     userList = db.users.find()
     return render_template('/admin/manageUsers/manageUsers.html', userList=userList)
 
 
 @app.route('/admin/manageUsers/createUser', methods=['GET', 'POST'])
-# @admin_only
+@admin_only
 def createUser():
     if request.method == 'GET':
         return render_template('/admin/manageUsers/createUser.html')
@@ -157,7 +162,7 @@ def createUser():
 
 
 @app.route('/admin/manageUsers/updateUser', methods=['GET', 'POST'])
-# @admin_only
+@admin_only
 def updateUser():
     if request.method == 'GET':
         return redirect('/')
@@ -168,7 +173,7 @@ def updateUser():
 
 
 @app.route('/admin/manageUsers/updateUserFlow', methods=['GET', 'POST'])
-# @admin_only
+@admin_only
 def updateUserFlow():
     if request.method == 'GET':
         return redirect('/')
@@ -179,7 +184,7 @@ def updateUserFlow():
 
 
 @app.route('/admin/manageUsers/deleteUser', methods=['GET', 'POST'])
-# @admin_only
+@admin_only
 def deleteUser():
     if request.method == 'GET':
         return redirect('/')
@@ -192,13 +197,13 @@ def deleteUser():
 
 
 @app.route('/admin/manageChallenges')
-# @admin_only
+@admin_only
 def viewManageChallenges():
     return render_template('/admin/manageChallenges/manageChallenges.html')
 
 
 @app.route('/admin/manageChallenges/createChallenges', methods=['GET', 'POST'])
-# @admin_only
+@admin_only
 def viewCreateChallenges():
 
     if request.method == 'GET':
@@ -215,14 +220,14 @@ def initialStartup():
     return render_template('initialSetup.html')
 
 @app.route('/admin/manageChallenges/updateChallenges', methods=['GET'])
-# @admin_only
+@admin_only
 def viewUpdateChallenges():
     return render_template('/admin/manageChallenges/updateChallenges.html')
 
 
 # Profile Page
 @app.route('/profile')
-# @logged_in
+@logged_in
 def viewProfile():
     userList = db.users.find()
     return render_template('/profile.html', userList=userList)
