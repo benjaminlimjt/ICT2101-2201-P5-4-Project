@@ -33,12 +33,14 @@
                 <div class="category-challenges col-md-12">
                     <div class="challenges-row col-md-12">
                         {% for challenge in challenges %}
-                        <div id="-1047475930" class="col-md-3 d-inline-block">
-                            <a href="/challenges/{{ challenge['challengeID'] }}"><button class="btn btn-dark challenge-button w-100 text-truncate pt-3 pb-3 mb-2" value="3">
-                                <p>{{ challenge['challengeName'] }}</p><span>10</span>
-                            </button>
-                            </a>
-                        </div>
+                            {% if challenge['challengeID'] != "0" %}
+                                <div id="-1047475930" class="col-md-3 d-inline-block">
+                                    <a href="/challenges/{{ challenge['challengeID'] }}"><button class="btn btn-dark challenge-button w-100 text-truncate pt-3 pb-3 mb-2" value="3">
+                                        <p>{{ challenge['challengeName'] }}</p><span>10</span>
+                                    </button>
+                                    </a>
+                                </div>
+                            {% endif %}
                         {% endfor %}
                     </div>
                 </div>
