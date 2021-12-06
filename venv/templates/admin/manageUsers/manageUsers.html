@@ -1,6 +1,4 @@
-{% extends "base.html" %} {% block content %} {% with messages =
-get_flashed_messages() %} {% if messages %} {% for message in messages %} {{
-message }} {% endfor %} {% endif %} {% endwith %}
+{% extends "base.html" %} {% block content %} 
 
 <main role="main">
   <div class="jumbotron">
@@ -10,10 +8,11 @@ message }} {% endfor %} {% endif %} {% endwith %}
   </div>
 
   <div class="container">
+    {% with messages =
+      get_flashed_messages() %} {% if messages %} {% for message in messages %} {{
+      message }} {% endfor %} {% endif %} {% endwith %}
     <div id="manageUsers">
-      <a href="/admin/manageUsers/createUser" class="btn btn-primary"
-        >Create User</a
-      >
+      <a href="/admin/manageUsers/createUser" class="btn btn-primary">Create User</a>
       <table class="table">
         <colgroup>
           <col span="4" style="background-color: white" />
