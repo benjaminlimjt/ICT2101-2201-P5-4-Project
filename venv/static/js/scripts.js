@@ -42,6 +42,7 @@ $("form[name=login_form").submit(function (e) {
             window.location.href = "/";
         },
         error: function (resp) {
+            alert("Invalid Username/Password!");
             console.log(resp);
         }
 
