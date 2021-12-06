@@ -76,10 +76,10 @@ $("form[name=createChallenge_form").submit(function (e) {
         type: "POST",
         data: {"formData": data, "challengeData": JSON.stringify(challengeData)},
         success: function (resp) {
-            alert("Successfully inserted challenge!");
+            alert("Successfully created challenge!");
         },
         error: function (resp) {
-            alert("Failed to insert challenge.");
+            alert("Failed to create challenge!");
         }
 
     })
