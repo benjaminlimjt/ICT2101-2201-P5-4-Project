@@ -123,6 +123,13 @@ def viewChallenge(id):
 def viewDashboard():
     return render_template('/dashboard/index.html')
 
+# Admin Specific Routes such as Manage Users, Manage Games, View Student Progress
+
+# Manage User
+@app.route('/admin/manageUsers')
+@admin_only
+def viewManageUsers():
+    return render_template('/admin/manageUsers/manageUsers.html')
 
 @app.route('/admin/dashboard', methods=['GET'])
 def viewAdminDashboard():

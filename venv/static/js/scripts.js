@@ -52,11 +52,9 @@ $("form[name=login_form").submit(function (e) {
 })
                     
 $("form[name=sendData_form").submit(function (e) {
-
     var $form = $(this);
     var $error = $form.find(".error");
     var data = $form.serialize();
-
     $.ajax({
         url: "/login",
         type: "POST",
@@ -68,9 +66,7 @@ $("form[name=sendData_form").submit(function (e) {
         error: function (resp) {
             console.log(resp);
         }
-
     })
-
     e.preventDefault();
 })
 
