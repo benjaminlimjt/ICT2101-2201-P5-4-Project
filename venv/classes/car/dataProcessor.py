@@ -37,3 +37,8 @@ class Processor:
         if db.carSensorData.insert_one(data):
              return "Successfully inserted Sensor Data. \n"
         return "Processor.updateSensorData failed"
+    def getSensorData(self):
+        cursor = db.carSensorData.find()
+        for record in cursor:
+            # print(record)
+            return record["sensorData"]

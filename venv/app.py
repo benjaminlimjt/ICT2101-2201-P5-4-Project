@@ -84,11 +84,15 @@ def sendMovementCommand():
 @app.route('/freeDriving/getCarCommands', methods=['GET'])
 def getMovementCommand():
     return Processor().getMovementCommand()
+@app.route('/freeDriving/getSensorData', methods=['GET'])
+def getSensorData():
+    return Processor().getSensorData()
 
 @app.route('/freeDriving/sensorData/<data>', methods=['GET', 'POST'])
 def updateSensorData(data):
     res = Processor().updateSensorData(data)
     return res + "Data from request = " + data
+
 
 # Challenge Routes
 @app.route('/challenges', methods=['GET'])
