@@ -67,8 +67,8 @@ class Challenge:
 
         if not db.challenges.find_one({'challengeID': self.challengeID}):
             db.challenges.insert_one(self.toJSON())
-            return "Successfully created challenge.", 200
+            return ({"success": "Successfully added challenge"}), 200
         
         else:
-            return "Failed to create challenge.", 400
+            return ({"failed": "Failed to add challenge"}), 400
         

@@ -75,12 +75,11 @@ $("form[name=createChallenge_form").submit(function (e) {
         url: "/admin/manageChallenges/createChallenges",
         type: "POST",
         data: {"formData": data, "challengeData": JSON.stringify(challengeData)},
-        dataType: "json",
         success: function (resp) {
-            alert("Successfully created challenge!");
+            alert("Successfully inserted challenge!");
         },
         error: function (resp) {
-            alert("Failed to create challenge!");
+            alert("Failed to insert challenge.");
         }
 
     })
